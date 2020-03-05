@@ -4,6 +4,10 @@
     1.3服务端渲染的流程：浏览器下载html文档 -> 页面显示
     1.4因此客户端渲染虽然提高了开发效率，但是牺牲了首屏加载速度，而且SEO(搜索引擎优化)不友好。
         SSR虽然开发效率低，但是首屏加载快，而且SEO友好。
+    1.5客户端渲染，React代码在浏览器上执行，消耗的是用户浏览器的性能。
+    1.6服务端渲染，React代码在服务器上执行，消耗的是服务器的性能。比如在服务端将虚拟dom转换成
+       字符串需要大量的计算。
+    1.7总结：如果不是对SEO比较执着，而且网站首屏时间在合理范围，还是不要使用SEO，毕竟太伤服务器。   
         
 2.ReactDOMServer(react-dom/server)可以把react组件渲染成静态标记。
 ReactDOMServer提供了四个方法：
@@ -16,8 +20,13 @@ ReactDOMServer提供了四个方法：
 
 3.ReactDOM.hydrate(以下内容翻译自react官网):
     1.和ReactDOM.render()方法一样，都是客户端方法。
-    1.会尝试往ReactDOMServer.renderToString方法生成的html标记上添加事件监听器。
-    2.React期望服务端生成的html标记和客户端生成的html标记要相同。
+    2.会尝试往ReactDOMServer.renderToString方法生成的html标记上添加事件监听器。
+    3.React期望服务端生成的html标记和客户端生成的html标记要相同。
+    4.总之ReactDOM.render方法一定要和ReactDOMServer.renderToString方法一起使用。
+    
+    
+    
+    
 3.运行：
     1.首先运行npm run build-server打包node端代码，
     然后运行npm run start-server启动node服务。
