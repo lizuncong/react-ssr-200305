@@ -7,6 +7,27 @@ const clientConfig = {
   output: {
     path: path.resolve(__dirname, '../public'),
     filename: "client.bundle.js"
+  },
+  module:{
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: {
+                localIdentName: '[path][name]__[local]'
+              },
+            }
+          }
+        ]
+      }
+    ]
   }
 }
 

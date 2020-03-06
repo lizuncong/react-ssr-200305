@@ -2,6 +2,14 @@ const path = require('path')
 
 module.exports = {
   mode: "development",
+  resolve: {
+    extensions: ['.js', '.jsx'],
+    alias: {
+      src: path.resolve(__dirname, '../src'),
+      pages: path.resolve(__dirname, '../src/pages'),
+      components: path.resolve(__dirname, '../src/components'),
+    },
+  },
   module: {
     rules: [
       {

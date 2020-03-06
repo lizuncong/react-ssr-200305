@@ -54,7 +54,9 @@ React服务端渲染路由问题：
     方法再加载同样的一个js脚本，ReactDOM.hydrate不会重新生成一个html标记，而是会尝试往已生成的html标记
     中添加事件属性等。这个过程就是同构。即一套代码在服务端执行一次生成html文档，在客户端再执行一次以绑定
     事件等属性
-    
+5.CSS服务端渲染：
+    使用isomorphic-style-loader取代style-loader，isomorphic-style-loader功能和style-loader相似。
+    但是isomorphic-style-loader针对关键路径CSS渲染进行了优化，并且在同构app中能很好的运行。
 3.运行：
     1.首先运行npm run build-server打包node端代码，
     然后运行npm run start-server启动node服务。

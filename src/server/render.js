@@ -10,11 +10,13 @@ const render = (req) => {
       { Routes }
     </StaticRouter>
   )
-
+  const cssStr = context.css || ''
+  console.log(cssStr)
   return `
     <html>
       <head>
          <title>ssr</title>
+         <style>${cssStr}</style>
       </head>
       <body>
         <div id="root">${content}</div>
