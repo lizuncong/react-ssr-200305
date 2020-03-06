@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-server": "nodemon --watch dist --exec node ./dist/server.bundle.js",
+    "start-server": "node ./dist/server.bundle.js",
     "build-server": "webpack --config ./build/webpack.server.js --watch",
     "build-client": "webpack --config ./build/webpack.client.js --watch"
   },
