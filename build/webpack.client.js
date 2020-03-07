@@ -14,7 +14,7 @@ const clientConfig = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: 'isomorphic-style-loader', // 同构
           },
           {
             loader: 'css-loader',

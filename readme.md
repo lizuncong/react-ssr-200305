@@ -8,7 +8,11 @@ React服务端渲染的思路：
     -> js中的React代码在浏览器端重新执行，浏览器不会重新生成HTML，而是试图往HTML标记中添加事件等操作
     -> js中的React代码接管页面操作，比如元素点击，页面导航都交由浏览器端js脚本处理
     
-    
+据实践，在服务端渲染中，只有组件的componentWillMount生命周期会调用
+React服务端渲染的几大难点：
+    1.同构。即如何让服务端返回的html标记可交互。
+    2.css的服务端渲染。即如何收集组件的css并插入到服务端生成的html当中。
+        
 React服务端渲染路由问题：
     在服务端渲染与客户端渲染有许多不同，因为服务器端是无状态的。因此服务器端使用
     无状态的<StaticRouter>替代<BrowserRouter>，然后通过来自于服务端的请求url使得路由能够匹配上。
@@ -54,9 +58,68 @@ React服务端渲染路由问题：
     方法再加载同样的一个js脚本，ReactDOM.hydrate不会重新生成一个html标记，而是会尝试往已生成的html标记
     中添加事件属性等。这个过程就是同构。即一套代码在服务端执行一次生成html文档，在客户端再执行一次以绑定
     事件等属性
+    
 5.CSS服务端渲染：
     使用isomorphic-style-loader取代style-loader，isomorphic-style-loader功能和style-loader相似。
     但是isomorphic-style-loader针对关键路径CSS渲染进行了优化，并且在同构app中能很好的运行。
+    在服务端渲染中，使用isomorphic-style-loader，isomorphic-style-loader提供了两个辅助函数：
+    _insertCss（给dom注入css）以及_getCss(返回一个css字符串)。
+    因此服务端CSS渲染的思路(或者说原理)是：
+    1.首先在组件的componentWillMount生命周期内：
+        import styles from './index.css'
+        ...
+        componentWillMount () {
+          if(this.props.staticContext){
+            this.props.staticContext.css.push(styles._getCss())
+          }
+        }
+        通过staticContext获取到组件的样式字符串，staticContext由StaticRouter提供。StaticRouter的context
+        属性会在组件渲染期间收集一些信息。
+    2.然后在服务端渲染的时候，将context收集到的css插入到html中：
+          const context = {
+            css: [],
+          };
+          const content = renderToString(
+            <StaticRouter location={req.path} context={context}>
+              { Routes }
+            </StaticRouter>
+          )
+          const cssStr = context.css.join('\n')
+          return `
+            <html>
+              <head>
+                 <title>ssr</title>
+                 <style>${cssStr}</style>
+              </head>
+              <body>
+                <div id="root">${content}</div>
+                <script src="/client.bundle.js"></script>
+              </body>
+            </html>`
+    3.所以问题来了，凡是需要服务端渲染的组件，内部都要实现componentWillMount生命周期以收集组件css。这样难免会
+    很麻烦
+        componentWillMount () {
+          if(this.props.staticContext){
+            this.props.staticContext.css.push(styles._getCss())
+          }
+        }
+    因此为了解决上面这个问题，可以实现一个高阶函数withStyle.js:
+        export default (DecoratedComponent, styles) => {
+          return class NewComponent extends React.Component{
+            componentWillMount () {
+              if(this.props.staticContext){
+                this.props.staticContext.css.push(styles._getCss())
+              }
+            }
+        
+            render() {
+              return <DecoratedComponent {...this.props} />
+            }
+          }
+        }
+    这个函数接受一个组件及该组件的css对象。
+    比如header.jsx组件如果需要做服务端渲染，那么可以用withStyle(Header, styles)包装一下。
+    4.这个估计就是isomorphic-style-loader提供的StyleContext以及withStyles的实现原理？
 3.运行：
     1.首先运行npm run build-server打包node端代码，
     然后运行npm run start-server启动node服务。

@@ -1,14 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import withStyles from 'isomorphic-style-loader/withStyles'
 import styles from './index.css'
 
 class Header extends React.Component{
-
-  componentWillMount () {
-    if(this.props.staticContext){
-      this.props.staticContext.css = styles._getCss()
-    }
-  }
 
   render(){
     return (
@@ -20,4 +15,4 @@ class Header extends React.Component{
   }
 }
 
-export default Header
+export default withStyles(styles)(Header)

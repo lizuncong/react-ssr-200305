@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import Routes from './router/index.jsx'
+import Routes from '../router'
 
 
 const App = () => {

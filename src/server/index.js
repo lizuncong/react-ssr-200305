@@ -6,7 +6,9 @@ const port = 3000;
 
 app.use(express.static('public'))
 
-
+app.get('/favicon.ico', function (req, res) {
+  res.send('hah')
+})
 app.get('*', function (req, res) {
 
   const html = render(req)

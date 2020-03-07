@@ -1,19 +1,15 @@
 import React from 'react'
 import Header from '../../components/header/index.jsx'
+import withStyles from 'isomorphic-style-loader/withStyles'
 import styles from './index.css';
 
 class Home extends React.Component{
-
-  componentWillMount () {
-    if(this.props.staticContext){
-      this.props.staticContext.css = styles._getCss()
-    }
-  }
-
   render(){
     return (
       <div>
-        <Header />
+        <Header
+          staticContext={this.props.staticContext}
+        />
         <div className={styles.title}>This is home page !!!</div>
         <button
           onClick={() => {
@@ -27,4 +23,4 @@ class Home extends React.Component{
   }
 }
 
-export default Home
+export default withStyles(styles)(Home)
