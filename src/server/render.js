@@ -1,6 +1,8 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server';
+import {Provider} from "react-redux";
 import StyleContext from 'isomorphic-style-loader/StyleContext'
+import getStore from '../redux/store'
 import App from './App.jsx'
 
 const render = (req) => {
@@ -8,9 +10,12 @@ const render = (req) => {
   const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()))
 
   const context = {};
+  const store = getStore()
   const content = renderToString(
       <StyleContext.Provider value={{ insertCss }}>
-        <App req={req} context={context} />
+        <Provider store={store} >
+          <App req={req} context={context} />
+        </Provider>
       </StyleContext.Provider>
   )
   console.log('server...render.js', req.path)
@@ -20,7 +25,7 @@ const render = (req) => {
     <html>
       <head>
          <title>ssr</title>
-         <style>${[...css].join('\n')}</style>
+         <style id="server-side-css">${[...css].join('\n')}</style>
       </head>
       <body>
         <div id="root">${content}</div>

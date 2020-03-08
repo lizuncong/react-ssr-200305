@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
-import Home from '../pages/home/index.jsx'
-import Login from '../pages/login/index.jsx'
+import Home from '../pages/home/connect'
+import Login from '../pages/login/connect'
 
 export default (
   <div>
