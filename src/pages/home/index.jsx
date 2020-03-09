@@ -5,10 +5,10 @@ import styles from './index.css';
 
 class Home extends React.Component{
 
-  componentDidMount() {
-    const { getList } = this.props;
-    getList()
-  }
+  // componentDidMount() {
+  //   const { getList } = this.props;
+  //   getList()
+  // }
 
 
   render(){

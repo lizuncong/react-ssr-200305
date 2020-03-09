@@ -1,11 +1,29 @@
 import React from 'react';
-import { Route } from 'react-router-dom'
 import Home from '../pages/home/connect'
 import Login from '../pages/login/connect'
+import Test from '../pages/test/index'
 
-export default (
-  <div>
-    <Route path="/" exact component={Home} />
-    <Route path="/login" exact component={Login} />
-  </div>
-)
+const routes = [
+  {
+    path: '/',
+    component: Home,
+    // exact: true,
+    key: 'home',
+    loadData: Home.loadData,
+    // routes: [
+    //   {
+    //     path: '/test',
+    //     component: Test,
+    //     // exact: true,
+    //     key: 'test',
+    //   }
+    // ]
+  },
+  {
+    path: 'login',
+    component: Login,
+    key: 'login',
+    exact: true
+  }
+]
+export default routes

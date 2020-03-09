@@ -8,8 +8,12 @@ class Header extends React.Component{
   render(){
     return (
       <div className={styles.test}>
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
+        <div>
+          <Link to="/">Home</Link>
+        </div>
+        <div>
+          <Link to="/login">Login</Link>
+        </div>
       </div>
     )
   }

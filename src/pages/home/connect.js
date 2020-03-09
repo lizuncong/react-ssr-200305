@@ -16,5 +16,11 @@ const mapDispatchToProps = dispatch => ({
   getList: () => dispatch(getList()),
   dispatch
 })
+const ConnectHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+// 在服务端渲染之前，把路由需要的数据提前加载好
+ConnectHome.loadData = () => {
+
+}
+
+export default ConnectHome

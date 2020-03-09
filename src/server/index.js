@@ -6,10 +6,6 @@ const port = 3000;
 
 app.use(express.static('public'))
 
-app.get('/favicon.ico', function (req, res) {
-  res.send('hah')
-})
-
 app.get('/api/*', function(req, res){
   const list = [
     {

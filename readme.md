@@ -121,8 +121,13 @@ React服务端渲染路由问题：
     比如header.jsx组件如果需要做服务端渲染，那么可以用withStyle(Header, styles)包装一下。
     4.这个估计就是isomorphic-style-loader提供的StyleContext以及withStyles的实现原理？
     
+6.异步数据服务器渲染：
+    在客户端渲染的实现当中，一般在组件的生命周期函数内，如componentDidMount，获取异步数据并渲染。
+    但是在服务端渲染中，大部分组件生命周期函数都不会执行（试了以下只有componentWillMount会执行）。因此
+    需要在服务端渲染的过程中调用接口获取数据并填充store。可以借助于react-router-dom提供的路由的loadData
+    属性。具体可看react-router官网的server-rendering指南
     
-
+    
 3.运行：
     1.首先运行npm run build-server打包node端代码，
     然后运行npm run start-server启动node服务。
