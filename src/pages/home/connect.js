@@ -14,13 +14,12 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   changeUserName: (userName) => dispatch(changeUserName(userName)),
   getList: () => dispatch(getList()),
-  dispatch
 })
 const ConnectHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 
 // 在服务端渲染之前，把路由需要的数据提前加载好
-ConnectHome.loadData = () => {
-
+ConnectHome.loadData = (store) => {
+  return store.dispatch(getList())
 }
 
 export default ConnectHome

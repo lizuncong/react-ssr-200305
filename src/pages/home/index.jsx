@@ -5,10 +5,12 @@ import styles from './index.css';
 
 class Home extends React.Component{
 
-  // componentDidMount() {
-  //   const { getList } = this.props;
-  //   getList()
-  // }
+  componentDidMount() {
+    const { getList, list } = this.props;
+    if(!list.length){
+      getList()
+    }
+  }
 
 
   render(){
@@ -16,9 +18,6 @@ class Home extends React.Component{
     // console.log('home...index.jsx', dispatch)
     return (
       <div>
-        <Header
-          staticContext={this.props.staticContext}
-        />
         <div className={styles.title}>
           This is home page !!!
           <div>my name is {userName}</div>

@@ -1,47 +1,34 @@
 import React from 'react';
 import express from 'express';
+import proxy from 'express-http-proxy'
+import { getServerStore } from '../redux/store'
 import render from './render';
+import { matchRoutes } from 'react-router-config'
+import routes from '../router'
 const app = express();
 const port = 3000;
 
 app.use(express.static('public'))
 
-app.get('/api/*', function(req, res){
-  const list = [
-    {
-      id: 1,
-      title: '数据1'
-    },
-    {
-      id: 2,
-      title: '数据2'
-    },
-    {
-      id: 3,
-      title: '数据3'
-    },
-    {
-      id: 4,
-      title: '数据4'
-    },
-    {
-      id: 5,
-      title: '数据5'
-    },
-  ]
-  setTimeout(() => {
-    res.send({
-      code: 0,
-      data: list
-    })
-  }, 5000)
-})
+app.use('/api', proxy('http://47.95.113.63', {
+  proxyReqPathResolver: function (req) {
+    return '/ssr/api' + req.url;
+  }
+}));
 
 app.get('*', function (req, res) {
+  const store = getServerStore()
+  // // 参考react-router-dom官网server-rendering指南
+  // // 根据路由路径，获取数据并填充store
+  const matchedRoutes = matchRoutes(routes, req.path)
 
-  const html = render(req)
+  const promises = matchedRoutes.map(item =>
+    item.route.loadData && item.route.loadData(store)
+  ).filter(Boolean)
 
-  res.send(html)
+  Promise.all(promises).then(() => {
+    res.send(render(store, routes, req))
+  })
 })
 
 
