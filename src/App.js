@@ -4,11 +4,11 @@ import Header from './components/header'
 
 class App extends React.Component{
 
-  render(props){
+  render(){
     return (
       <div>
         <Header />
-        { renderRoutes(props.route.routes) }
+        { renderRoutes(this.props.route.routes) }
       </div>
     )
   }
