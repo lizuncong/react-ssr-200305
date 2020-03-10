@@ -1,0 +1,36 @@
+.header{
+  height: 40px;
+  display: flex;
+  background-color: white;
+  box-shadow:0 0 5px 3px rgba(69, 165, 255, 0.12);
+  padding: 0 20px;
+  .left{
+    .breadcrumb{
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      &:after{
+        position: absolute;
+        content: '';
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%, 100%);
+        border-top: 10px solid white;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+      }
+    }
+  }
+  .right{
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .logout-btn{
+      margin-left: 12px;
+      color: #ff8605;
+      cursor: pointer;
+    }
+  }
+}

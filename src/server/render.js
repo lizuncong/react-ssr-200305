@@ -2,7 +2,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server';
 import {Provider} from "react-redux";
 import StyleContext from 'isomorphic-style-loader/StyleContext'
-import App from './App.jsx'
+import Router from '../router'
 
 const render = (store, routes, req) => {
   const css = new Set() // CSS for all rendered React components
@@ -14,10 +14,11 @@ const render = (store, routes, req) => {
     const content = renderToString(
       <StyleContext.Provider value={{ insertCss }}>
         <Provider store={store} >
-          <App req={req} context={context} />
+          <Router serverSide req={req} context={context} />
         </Provider>
       </StyleContext.Provider>
     )
+
 
     return `
               <html>

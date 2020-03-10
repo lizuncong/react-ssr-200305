@@ -4,7 +4,7 @@ import proxy from 'express-http-proxy'
 import { getServerStore } from '../redux/store'
 import render from './render';
 import { matchRoutes } from 'react-router-config'
-import routes from '../router'
+import routes from '../router/routes'
 const app = express();
 const port = 3000;
 

@@ -1,5 +1,11 @@
 const path = require('path')
 
+const cssRegex = /\.css$/;
+const cssModuleRegex = /\.module\.css$/;
+
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
+
 module.exports = {
   mode: "development",
   resolve: {
@@ -33,7 +39,57 @@ module.exports = {
         ]
       },
       {
-        test: /\.css$/,
+        test: cssRegex,
+        exclude: cssModuleRegex,
+        use: [
+          {
+            loader: 'isomorphic-style-loader', // 同构
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              // importLoaders: 1,
+            }
+          }
+        ]
+      },
+      {
+        test: cssModuleRegex,
+        use: [
+          {
+            loader: 'isomorphic-style-loader', // 同构
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              // importLoaders: 1,
+              modules: {
+                localIdentName: '[path][name]__[local]',
+              },
+            }
+          }
+        ]
+      },
+      {
+        test: lessRegex,
+        exclude: lessModuleRegex,
+        use: [
+          {
+            loader: 'isomorphic-style-loader', // 同构
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
+      },
+      {
+        test: lessModuleRegex,
         use: [
           {
             loader: 'isomorphic-style-loader', // 同构
@@ -43,12 +99,15 @@ module.exports = {
             options: {
               importLoaders: 1,
               modules: {
-                localIdentName: '[path][name]__[local]'
+                localIdentName: '[path][name]__[local]',
               },
             }
+          },
+          {
+            loader: 'less-loader'
           }
         ]
-      }
+      },
     ]
   },
 }
