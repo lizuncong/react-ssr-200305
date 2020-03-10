@@ -26,7 +26,7 @@ const render = (store, routes, req) => {
               <html>
                 <head>
                    <title>ssr</title>
-                   <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css" rel="stylesheet">
+<!--                   <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css" rel="stylesheet">-->
                    <style id="server-side-css">${[...css].join('\n')}</style>
                 </head>
                 <body>
