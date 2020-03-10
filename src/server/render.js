@@ -6,7 +6,9 @@ import Router from '../router'
 
 const render = (store, routes, req) => {
   const css = new Set() // CSS for all rendered React components
-  const insertCss = (...styles) => styles.forEach(style => css.add(style._getCss()))
+  const insertCss = (...styles) => styles.forEach(style => {
+    css.add(style._getCss())
+  })
 
   const context = {};
 
@@ -24,7 +26,7 @@ const render = (store, routes, req) => {
               <html>
                 <head>
                    <title>ssr</title>
-                   <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css" rel="stylesheet">
+                   <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css" rel="stylesheet">-->
                    <style id="server-side-css">${[...css].join('\n')}</style>
                 </head>
                 <body>

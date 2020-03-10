@@ -28,9 +28,9 @@ class NavLeft extends React.Component{
   }
 
   handleClick(menuItem) {
-    const { switchMenu } = this.props;
+    // const { switchMenu } = this.props;
     const menuName = menuItem.item.props.children.props.children;
-    switchMenu({ menuId: menuItem.url, menuName });
+    // switchMenu({ menuId: menuItem.url, menuName });
     this.setState({
       currentUrl: menuItem.key,
     });

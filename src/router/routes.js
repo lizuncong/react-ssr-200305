@@ -1,9 +1,13 @@
 import React from 'react';
-import Home from '../pages/home/connect'
-import Login from '../pages/login/connect'
 import SideBarLayout from '../layout/sidebar'
 import CommonLayout from '../layout/common'
 import Detail from '../pages/detail'
+import Home from '../pages/home/connect'
+import Login from '../pages/login/connect'
+import Role from '../pages/role'
+import User from '../pages/user'
+import ProduceList from '../pages/produce-list'
+import ProduceCategory from '../pages/produce-category'
 
 const routes = [
   {
@@ -33,7 +37,27 @@ const routes = [
         component: Home,
         key: 'home',
         loadData: Home.loadData
-      }
+      },
+      {
+        path: '/user',
+        component: User,
+        key: 'user',
+      },
+      {
+        path: '/role',
+        component: Role,
+        key: 'role',
+      },
+      {
+        path: '/produce/list',
+        component: ProduceList,
+        key: 'produceList',
+      },
+      {
+        path: '/produce/category',
+        component: ProduceCategory,
+        key: 'produceCategory',
+      },
     ]
   }
 ]

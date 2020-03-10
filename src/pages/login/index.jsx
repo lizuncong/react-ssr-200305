@@ -10,8 +10,8 @@ class Login extends React.Component{
     const { userName } = this.props;
     return (
         <div>
-          <div>This is login page !!!</div>
-          <div>This is my name: {userName}</div>
+          <div>登录页</div>
+          <div>欢迎： {userName}</div>
         </div>
     )
   }

@@ -1,45 +1,40 @@
 const menuList = [
   {
-    title: '测试',
+    title: '系统配置',
     menuId: '3000',
     url: '/',
     children: [
       {
-        title: '列表',
+        title: '首页',
         menuId: '3001',
         url: '/home',
       },
       {
-        title: '列表2',
+        title: '用户管理',
         menuId: '3002',
-        url: '/list2',
+        url: '/user',
       },
       {
-        title: '列表3',
+        title: '角色管理',
         menuId: '3003',
-        url: '/list3',
+        url: '/role',
       },
     ],
   },
   {
-    title: '测试2',
-    menuId: '3000',
-    url: '/test2',
+    title: '商品管理',
+    menuId: '4000',
+    url: '/produce',
     children: [
       {
-        title: '列表',
-        menuId: '3001',
-        url: '/test2/home',
+        title: '商品列表',
+        menuId: '4001',
+        url: '/produce/list',
       },
       {
-        title: '列表2',
-        menuId: '3002',
-        url: '/test2/home2',
-      },
-      {
-        title: '列表3',
-        menuId: '3003',
-        url: '/test2/home3',
+        title: '商品分类',
+        menuId: '4002',
+        url: '/produce/category',
       },
     ],
   },

@@ -3,7 +3,7 @@ import { Menu } from 'antd'
 import { NavLink } from 'react-router-dom';
 // import menuStyles from 'antd/lib/menu/style/index.less'
 // import menuStyles from '!!isomorphic-style-loader!css-loader!less-loader?javascriptEnabled=true!antd/lib/menu/style/index.less'
-// import withStyles from 'isomorphic-style-loader/withStyles'
+import withStyles from 'isomorphic-style-loader/withStyles'
 
 const { SubMenu } = Menu
 
@@ -35,6 +35,7 @@ class IMenu extends React.Component{
       <Menu
         onClick={(menuItem) => onClick(menuItem)}
         selectedKeys={selectedKeys}
+        mode="vertical"
         theme="dark"
       >
         { this.renderMenu(menuData) }

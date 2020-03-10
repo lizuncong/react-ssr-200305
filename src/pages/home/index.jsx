@@ -31,7 +31,7 @@ class Home extends React.Component{
         <div>
           {
             list.map(item => (
-                <div key={item.id}>{item.title}</div>
+                <div key={item.id}>{`测试数据${item.id}`}</div>
             ))
           }
         </div>
