@@ -37,8 +37,8 @@ module.exports = {
               plugins: [
                 ["import", {
                   libraryName: "antd",
-                  libraryDirectory: "lib", //改成es会有问题
-                  style: "true" // `style: true` 会加载 less 文件
+                  // libraryDirectory: "lib", //改成es会有问题
+                  style: true // `style: true` 会加载 less 文件
                 }]
               ]
             }
