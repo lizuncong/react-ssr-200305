@@ -1,9 +1,9 @@
 import React from 'react'
 import { Menu } from 'antd'
 import { NavLink } from 'react-router-dom';
-import 'antd/lib/menu/style'
+// import 'antd/lib/menu/style'
 // import menuStyles from '!!isomorphic-style-loader!css-loader!less-loader?javascriptEnabled=true!antd/lib/menu/style/index.less'
-import withStyles from 'isomorphic-style-loader/withStyles'
+// import withStyles from 'isomorphic-style-loader/withStyles'
 
 const { SubMenu } = Menu
 
@@ -30,7 +30,6 @@ class IMenu extends React.Component{
 
   render(){
     const { selectedKeys, menuData, onClick } = this.props;
-    console.log('menu...index.jsx', Menu)
     return (
       <Menu
         onClick={(menuItem) => onClick(menuItem)}
@@ -44,5 +43,5 @@ class IMenu extends React.Component{
   }
 }
 
-export default withStyles()(IMenu)
-// export default IMenu
+// export default withStyles()(IMenu)
+export default IMenu

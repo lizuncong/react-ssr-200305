@@ -1,8 +1,7 @@
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk'
 import rootReducer from '../reducer';
-import  clientAxios from '../../client/request'
-import serverAxios from '../../server/request'
+import  { clientAxios, serverAxios } from '../../request'
 
 // 安装redux-devtools-extension的可视化工具。
 // import { composeWithDevTools } from 'redux-devtools-extension'

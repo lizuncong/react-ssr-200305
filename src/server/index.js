@@ -8,6 +8,7 @@ import routes from '../router/routes'
 const app = express();
 const port = 3000;
 
+
 app.use(express.static('public'))
 
 app.use('/api', proxy('http://47.95.113.63', {
@@ -23,7 +24,7 @@ app.get('*', function (req, res) {
   const matchedRoutes = matchRoutes(routes, req.path)
 
   const promises = matchedRoutes.map(item =>
-    item.route.loadData && item.route.loadData(store)
+    item.route.loadData && item.route.loadData(store)  // 调用loadData填充store
   ).filter(Boolean)
 
   Promise.all(promises).then(() => {

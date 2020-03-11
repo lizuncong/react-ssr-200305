@@ -3,7 +3,6 @@ import { changeUserName, getList } from './actions';
 import Home from './index';
 
 const mapStateToProps = (state) => {
-  console.log('home...connect.js', state)
   const { home } = state;
   return {
     userName: home.userName,

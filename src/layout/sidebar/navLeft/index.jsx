@@ -38,7 +38,6 @@ class NavLeft extends React.Component{
 
   render(){
     const { currentUrl, menuData } = this.state;
-    console.log('currentUrl..', currentUrl)
     return(
       <div className={styles.navLeftContent}>
         <div className={styles.logo}>
