@@ -1,7 +1,6 @@
 import { changeUserAction, changeListAction } from './actionTypes'
 
 export const changeUserName = (userName) => {
-  console.log('home....actions.js..', userName)
   return dispatch => {
     dispatch(changeUserAction(userName))
   }
