@@ -11,11 +11,29 @@ const port = 3000;
 
 app.use(express.static('public'))
 
-app.use('/api', proxy('http://47.95.113.63', {
-  proxyReqPathResolver: function (req) {
-    return '/ssr/api' + req.url;
-  }
-}));
+// app.use('/api', proxy('http://47.95.113.63', {
+//   proxyReqPathResolver: function (req) {
+//     return '/ssr/api' + req.url;
+//   }
+// }));
+app.get('/api', function (req, res) {
+  setTimeout(() => {
+    res.send([
+      {
+        id: '1',
+        title: '测试数据1'
+      },
+      {
+        id: '2',
+        title: '测试数据2'
+      },
+      {
+        id: '3',
+        title: '测试数据3'
+      },
+    ])
+  }, 3000)
+})
 
 app.get('*', function (req, res) {
   const store = getServerStore()
