@@ -3,6 +3,8 @@ import withStyles from 'isomorphic-style-loader/withStyles'
 import { Modal } from 'antd'
 import styles from './index.module.less';
 // const { confirm } = Modal;
+import elephant from '../../resource/images/elephant.jpg';
+import bigImg from '../../resource/images/big.png';
 
 class Home extends React.Component{
 
@@ -22,6 +24,16 @@ class Home extends React.Component{
         <div className={styles.title}>
           This is home page !!!
           <div>my name is {userName}</div>
+          <img
+            src={elephant}
+            alt=""
+            style={{ width: '100px', height: '100px' }}
+          />
+          <img
+            src={bigImg}
+            alt=""
+            style={{ width: '100px', height: '100px' }}
+          />
         </div>
         <button
           onClick={() => {

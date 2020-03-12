@@ -35,6 +35,7 @@ module.exports = {
                 "@babel/preset-react"
               ],
               plugins: [
+                "@babel/plugin-syntax-dynamic-import",
                 ["import", {
                   libraryName: "antd",
                   // libraryDirectory: "lib", //改成es会有问题
@@ -44,6 +45,25 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test: /\.(png|jpe?g|gif|ico)$/i,
+        use: {
+          loader: 'url-loader',
+          options: {
+            name: 'static/media/[name].[hash:8].[ext]',
+            limit: 8192,
+          },
+        },
+      },
+      {
+        test: /\.(eot|ttf|svg|woff)$/i,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'static/media/[name].[hash:8].[ext]',
+          },
+        },
       },
       {
         test: cssRegex,
