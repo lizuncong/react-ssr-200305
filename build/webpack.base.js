@@ -8,8 +8,20 @@ const lessModuleRegex = /\.module\.less$/;
 
 module.exports = {
   mode: "development",
+
+  output: {
+    path: resolvePath(BUILD_DIR, '../dist/public/assets'),
+    publicPath: '/assets/',
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
+    // Point sourcemap entries to original disk location (format as URL on Windows)
+    devtoolModuleFilenameTemplate: info =>
+      path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+  },
+
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: ['node_modules', 'src'],
     alias: {
       src: path.resolve(__dirname, '../src'),
       pages: path.resolve(__dirname, '../src/pages'),
@@ -17,6 +29,7 @@ module.exports = {
     },
   },
   module: {
+    strictExportPresence: true,
     rules: [
       {
         test: /\.jsx?$/,
@@ -75,9 +88,12 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              // importLoaders: 1,
+              importLoaders: 1,
             }
-          }
+          },
+          {
+            loader: 'postcss-loader',
+          },
         ]
       },
       {
@@ -89,12 +105,15 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              // importLoaders: 1,
+              importLoaders: 1,
               modules: {
                 localIdentName: '[path][name]__[local]',
               },
             }
-          }
+          },
+          {
+            loader: 'postcss-loader',
+          },
         ]
       },
       {
@@ -107,8 +126,11 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
             }
+          },
+          {
+            loader: 'postcss-loader',
           },
           {
             loader: 'less-loader',
@@ -130,11 +152,14 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
               modules: {
                 localIdentName: '[path][name]__[local]',
               },
             }
+          },
+          {
+            loader: 'postcss-loader',
           },
           {
             loader: 'less-loader'
