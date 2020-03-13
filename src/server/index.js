@@ -41,6 +41,9 @@ app.get('*', function (req, res) {
   // // 根据路由路径，获取数据并填充store
   const matchedRoutes = matchRoutes(routes, req.path)
 
+  console.log('req.path..', req.path)
+  console.log('matchedRoutes...', matchedRoutes)
+
   const promises = matchedRoutes.map(item =>
     item.route.loadData && item.route.loadData(store)  // 调用loadData填充store
   ).filter(Boolean)
