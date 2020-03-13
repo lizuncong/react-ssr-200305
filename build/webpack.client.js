@@ -10,8 +10,9 @@ const lessModuleRegex = /\.module\.less$/;
 
 const clientConfig = {
   target: 'web',
-  entry: path.resolve(__dirname, '../src/client/index.jsx'),
-
+  entry: {
+    client: path.resolve(__dirname, '../src/client/index.jsx')
+  },
   optimization: {
     splitChunks: {
       cacheGroups: {

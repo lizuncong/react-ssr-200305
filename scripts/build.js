@@ -2,7 +2,7 @@ const rimraf = require('rimraf')
 const mkdirp = require('mkdirp');
 const webpack = require('webpack');
 const clientConfig = require('../build/webpack.client');
-import serverConfig = require('../build/webpack.server');
+const serverConfig = require('../build/webpack.server');
 
 function build() {
   // 清空dist目录

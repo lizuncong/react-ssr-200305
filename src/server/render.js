@@ -12,7 +12,6 @@ const render = (store, routes, req) => {
 
   const context = {};
 
-
     const content = renderToString(
       <StyleContext.Provider value={{ insertCss }}>
         <Provider store={store} >

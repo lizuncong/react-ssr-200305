@@ -15,15 +15,21 @@ const routes = [
   {
     path: '/login',
     component: Login,
+    title: '登录页',
+    chunks: ['Login'],
     key: 'login'
   },
   {
     path: '/common',
     component: CommonLayout,
     key: 'commonLayout',
+    chunks: ['CommonLayout'],
+    title: '普通布局',
     routes: [
       {
         path: '/common/detail',
+        chunks: ['Detail'],
+        title: '详情页',
         component: Detail,
         key: 'detail',
       }
@@ -33,31 +39,43 @@ const routes = [
     path: '/',
     component: SideBarLayout,
     key: 'sideBarLayout',
+    chunks: ['SideBarLayout'],
+    title: '侧边栏布局',
     routes: [
       {
         path: '/home',
         component: Home,
+        chunks: ['Home'],
+        title: '首页',
         key: 'home',
         loadData: Home.loadData
       },
       {
         path: '/user',
         component: User,
+        chunks: ['User'],
+        title: '用户',
         key: 'user',
       },
       {
         path: '/role',
         component: Role,
+        chunks: ['Role'],
+        title: '角色',
         key: 'role',
       },
       {
         path: '/produce/list',
         component: ProduceList,
+        chunks: ['ProduceList'],
+        title: '商品列表',
         key: 'produceList',
       },
       {
         path: '/produce/category',
         component: ProduceCategory,
+        chunks: ['ProduceCategory'],
+        title: '商品分类',
         key: 'produceCategory',
       },
     ]

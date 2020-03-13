@@ -9,7 +9,9 @@ const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
 const serverConfig = {
   target: 'node', // 使用node.js require加载chunks，并且任何内置的模块(如fs或者path)都不会打包进bundle中
-  entry: path.resolve(__dirname, '../src/server/index.js'),
+  entry: {
+    server: path.resolve(__dirname, '../src/server/index.js')
+  },
   externals: [
       './chunk-manifest.json',
       './asset-manifest.json',
@@ -29,7 +31,6 @@ const serverConfig = {
     // https://webpack.js.org/plugins/define-plugin/
     new webpack.DefinePlugin({
       'process.env.BROWSER': false,
-      __DEV__: isDebug,
     }),
 
     // Adds a banner to the top of each generated chunk
