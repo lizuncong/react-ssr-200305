@@ -1,5 +1,5 @@
 const path = require('path')
-
+const LoadablePlugin = require('@loadable/webpack-plugin')
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 
@@ -45,20 +45,22 @@ module.exports = (target) => {
                   [
                     "@babel/preset-env",
                     {
-                      "useBuiltIns": "usage",
-                      "corejs": 3
+                      "useBuiltIns": isClient ? "usage" : undefined,
+                      "corejs": isClient ? 3 : false,
+
                     }
                   ],
                   "@babel/preset-react"
                 ],
                 plugins: [
+                  "@loadable/babel-plugin",
                   "@babel/plugin-syntax-dynamic-import",
                   ["import", {
                     libraryName: "antd",
                     // libraryDirectory: "lib", //改成es会有问题
                     style: true // `style: true` 会加载 less 文件
                   }]
-                ]
+                ].filter(Boolean)
               }
             }
           ]
@@ -178,5 +180,11 @@ module.exports = (target) => {
       colors: true,
       timings: true,
     },
+    plugins: [
+      new LoadablePlugin({
+        writeToDisk: true,
+        filename: `loadable-stats-${target}.json`
+      }),
+    ]
   }
 }

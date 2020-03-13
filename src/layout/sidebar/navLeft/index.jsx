@@ -41,7 +41,7 @@ class NavLeft extends React.Component{
     return(
       <div className={styles.navLeftContent}>
         <div className={styles.logo}>
-          <img src="/assets/logo-ant.svg" alt="" />
+          {/*<img src="/assets/logo-ant.svg" alt="" />*/}
           <h1>MTAdmin</h1>
         </div>
         <Menu

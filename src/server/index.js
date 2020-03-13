@@ -9,7 +9,6 @@ import path from "path"
 const app = express();
 const port = 3000;
 
-
 app.use(express.static(path.resolve(__dirname, 'public')))
 
 // app.use('/api', proxy('http://47.95.113.63', {
@@ -41,13 +40,16 @@ app.get('*', function (req, res) {
   // // 参考react-router-dom官网server-rendering指南
   // // 根据路由路径，获取数据并填充store
   const matchedRoutes = matchRoutes(routes, req.path)
-  console.log('matchedRoutes....', matchedRoutes)
-  const promises = matchedRoutes.map(item =>
-    item.route.loadData && item.route.loadData(store)  // 调用loadData填充store
-  ).filter(Boolean)
+  const promises = matchedRoutes.map(item => {
+    return item.route.loadData && item.route.loadData(store)  // 调用loadData填充store
+  }).filter(Boolean)
 
   Promise.all(promises).then(() => {
-    res.send(render(store, routes, req))
+    const mRoute = matchedRoutes[matchedRoutes.length - 1] || {}
+    const route = mRoute.route || {};
+    res.status(route.status || 200);
+    res.set('content-type', 'text/html')
+    res.send(render(store, routes, matchedRoutes, req))
   })
 })
 

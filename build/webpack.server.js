@@ -32,7 +32,6 @@ const serverConfig = {
     new webpack.DefinePlugin({
       'process.env.BROWSER': false,
     }),
-
     // Adds a banner to the top of each generated chunk
     // https://webpack.js.org/plugins/banner-plugin/
     new webpack.BannerPlugin({

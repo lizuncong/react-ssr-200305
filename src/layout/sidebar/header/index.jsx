@@ -18,7 +18,7 @@ class Header extends React.Component{
           <div className={styles.breadcrumb}>页面1</div>
         </div>
         <div className={styles.right}>
-          <span>欢迎，{ userName }</span>
+          <span>欢迎{userName}</span>
           <span>退出</span>
         </div>
       </div>
