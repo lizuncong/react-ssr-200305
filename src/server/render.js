@@ -29,6 +29,7 @@ const render = (store, routes, matchedRoutes, req) => {
 
   // const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats, entrypoints: ['server'] })
   const webExtractor = new ChunkExtractor({ statsFile: webStats, entrypoints: ['client'] })
+  // const webExtractor = new ChunkExtractor({ statsFile: nodeStats, entrypoints: ['server'] })
 
   // const { default: App } = nodeExtractor.requireEntrypoint()
 
@@ -45,14 +46,27 @@ const render = (store, routes, matchedRoutes, req) => {
   }
   const context = {};
 
-  const jsx = webExtractor.collectChunks(<StyleContext.Provider value={{ insertCss }}>
-    <Provider store={store} >
-      <Router serverSide req={req} context={context} />
-    </Provider>
-  </StyleContext.Provider>)
+  const jsx = webExtractor.collectChunks(
+    <StyleContext.Provider value={{ insertCss }}>
+      <Provider store={store} >
+        <Router serverSide req={req} context={context} />
+      </Provider>
+    </StyleContext.Provider>
+  )
 
   const content = renderToString(jsx)
-  console.log('content...', content)
+
+
+  const scriptTags = webExtractor.getScriptElements()
+  const linkTags = webExtractor.getLinkElements()
+  const styleTags = webExtractor.getStyleTags()
+
+
+
+
+  data.scriptTags = scriptTags
+  data.linkTags = linkTags;
+  data.styleTags = styleTags;
   data.state = store.getState()
   data.children = content
   // // You can now collect your script tags
@@ -65,26 +79,32 @@ const render = (store, routes, matchedRoutes, req) => {
   // console.log('linkTags...', linkTags)
   // console.log('styleTags...', styleTags)
   data.styles = [{ id: 'server-side-css', cssText: [...css].join('') }];
-
   const scripts = new Set();
-  const addChunk = chunk => {
-    if (chunks[chunk]) {
-      chunks[chunk].forEach(asset => scripts.add(asset));
-    } else {
-      throw new Error(`${chunk}没找到`);
-    }
-  };
-  addChunk('client');
-  matchedRoutes.forEach(rou => {
-    if (rou.chunk) addChunk(rou.chunk);
-    if (rou.chunks) rou.chunks.forEach(addChunk);
-  })
+  // 使用loadable生成的chunk，如果自己根据路由去取对应的chunk会有问题
+  // const addChunk = chunk => {
+  //   if (chunks[chunk]) {
+  //     chunks[chunk].forEach(asset => scripts.add(asset));
+  //   } else {
+  //     throw new Error(`${chunk}没找到`);
+  //   }
+  // };
+  // addChunk('client');
+  // matchedRoutes.forEach(rou => {
+  //   if (rou.chunk) addChunk(rou.chunk);
+  //   if (rou.chunks) rou.chunks.forEach(addChunk);
+  // })
 
 
   data.scripts = Array.from(scripts);
   data.cssLinks = [
     "https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css"
   ]
+  //
+  // console.log('data....', scriptTags)
+  // console.log('data....', linkTags)
+  // console.log('data....', styleTags)
+  // console.log('element...', webExtractor.getScriptElements())
+  console.log('server....render.js')
   const html = renderToStaticMarkup(<Html {...data} />)
   return `<!doctype html>${html}`
 }

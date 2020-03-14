@@ -3,7 +3,7 @@ import React from 'react'
 class Login extends React.Component{
 
   componentDidMount() {
-
+    console.log('login...componentDidMount')
   }
 
   render(){

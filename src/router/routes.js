@@ -30,7 +30,7 @@ const routes = [
     path: '/login',
     component: Login,
     title: '登录页',
-    chunks: ['Login'],
+    // chunks: ['Login'],
     key: 'login',
     description: '这是一个登录页哦'
   },
@@ -38,13 +38,13 @@ const routes = [
     path: '/common',
     component: CommonLayout,
     key: 'commonLayout',
-    chunks: ['CommonLayout'],
+    // chunks: ['CommonLayout'],
     title: '普通布局',
     description: '这是一个普通布局，没有菜单栏的',
     routes: [
       {
         path: '/common/detail',
-        chunks: ['Detail'],
+        // chunks: ['Detail'],
         title: '详情页',
         component: Detail,
         key: 'detail',
@@ -56,14 +56,14 @@ const routes = [
     path: '/',
     component: SideBarLayout,
     key: 'sideBarLayout',
-    chunks: ['SideBarLayout'],
+    // chunks: ['SideBarLayout'],
     title: '侧边栏布局',
     description: '这是一个侧边栏布局，有菜单的',
     routes: [
       {
         path: '/home',
         component: Home,
-        chunks: ['Home'],
+        // chunks: ['Home'],
         title: '首页',
         description: '这是我的首页',
         key: 'home',
@@ -72,7 +72,7 @@ const routes = [
       {
         path: '/user',
         component: User,
-        chunks: ['User'],
+        // chunks: ['User'],
         title: '用户',
         description: '这是用户页',
         key: 'user',
@@ -80,7 +80,7 @@ const routes = [
       {
         path: '/role',
         component: Role,
-        chunks: ['Role'],
+        // chunks: ['Role'],
         description: '这是角色管理页面',
         title: '角色',
         key: 'role',
@@ -88,7 +88,7 @@ const routes = [
       {
         path: '/produce/list',
         component: ProduceList,
-        chunks: ['ProduceList'],
+        // chunks: ['ProduceList'],
         description: '这是商品列表页面',
         title: '商品列表',
         key: 'produceList',
@@ -96,7 +96,7 @@ const routes = [
       {
         path: '/produce/category',
         component: ProduceCategory,
-        chunks: ['ProduceCategory'],
+        // chunks: ['ProduceCategory'],
         title: '商品分类',
         description: '这是商品分类页面',
         key: 'produceCategory',

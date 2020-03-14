@@ -8,6 +8,9 @@ export default function Html({
   cssLinks,
   children,
   state,
+  scriptTags,
+  linkTags,
+  styleTags,
 }) {
   return (
     <html className="no-js" lang="en">
@@ -17,6 +20,9 @@ export default function Html({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {
+          linkTags
+        }
         {
           scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />
@@ -36,14 +42,14 @@ export default function Html({
         ))}
       </head>
       <body>
-        <div id="root" dangerouslySetInnerHTML={{ __html: children }} />
+        <div id="main" dangerouslySetInnerHTML={{ __html: children }} />
         <script
           dangerouslySetInnerHTML={{ __html: `window.INITIAL_STATE=${JSON.stringify(state)}` }}
         />
         {scripts.map(script => (
           <script key={script} src={script} />
         ))}
-
+        {scriptTags}
       </body>
     </html>
   );

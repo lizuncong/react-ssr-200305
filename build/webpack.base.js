@@ -182,7 +182,7 @@ module.exports = (target) => {
     },
     plugins: [
       new LoadablePlugin({
-        writeToDisk: true,
+        // writeToDisk: true,
         filename: `loadable-stats-${target}.json`
       }),
     ]

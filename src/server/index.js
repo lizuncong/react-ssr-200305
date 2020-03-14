@@ -17,22 +17,20 @@ app.use(express.static(path.resolve(__dirname, 'public')))
 //   }
 // }));
 app.get('/api', function (req, res) {
-  setTimeout(() => {
-    res.send([
-      {
-        id: '1',
-        title: '测试数据1'
-      },
-      {
-        id: '2',
-        title: '测试数据2'
-      },
-      {
-        id: '3',
-        title: '测试数据3'
-      },
-    ])
-  }, 3000)
+  res.send([
+    {
+      id: '1',
+      title: '测试数据1'
+    },
+    {
+      id: '2',
+      title: '测试数据2'
+    },
+    {
+      id: '3',
+      title: '测试数据3'
+    },
+  ])
 })
 
 app.get('*', function (req, res) {
