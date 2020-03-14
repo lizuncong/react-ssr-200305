@@ -21,6 +21,7 @@ const render = (store, routes, req) => {
       </StyleContext.Provider>
     )
 
+    console.log('content...', content)
 
     return `
               <html>
@@ -31,7 +32,6 @@ const render = (store, routes, req) => {
                 </head>
                 <body>
                   <div id="root">${content}</div>
-                  <img src="../resource/images/elephant.jpg" alt="">
                   <script>
                     window.INITIAL_STATE=${JSON.stringify(store.getState())}
                   </script>
