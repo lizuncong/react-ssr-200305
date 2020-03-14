@@ -13,7 +13,6 @@ const insertCss = (...styles) => {
 const store = getClientStore()
 
 loadableReady(() => {
-  const root =  document.getElementById('root')
   ReactDom.hydrate(
     <StyleContext.Provider value={{ insertCss }}>
       <Provider store={store} >
@@ -23,4 +22,12 @@ loadableReady(() => {
     root
   )
 })
-
+//
+// ReactDom.hydrate(
+//   <StyleContext.Provider value={{ insertCss }}>
+//     <Provider store={store} >
+//       <Router />
+//     </Provider>
+//   </StyleContext.Provider>,
+//   root
+// )

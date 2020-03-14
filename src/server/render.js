@@ -27,9 +27,12 @@ const render = (store, routes, matchedRoutes, req) => {
 
   // const extractor = new ChunkExtractor({ statsFile, entrypoints: ['server'] })
 
-  const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats })
-  const webExtractor = new ChunkExtractor({ statsFile: webStats })
+  // const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats, entrypoints: ['server'] })
+  const webExtractor = new ChunkExtractor({ statsFile: webStats, entrypoints: ['client'] })
 
+  // const { default: App } = nodeExtractor.requireEntrypoint()
+
+  // console.log(App)
 
   const css = new Set() // CSS for all rendered React components
   const insertCss = (...styles) => styles.forEach(style => {
@@ -49,6 +52,7 @@ const render = (store, routes, matchedRoutes, req) => {
   </StyleContext.Provider>)
 
   const content = renderToString(jsx)
+  console.log('content...', content)
   data.state = store.getState()
   data.children = content
   // // You can now collect your script tags

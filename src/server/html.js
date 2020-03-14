@@ -24,7 +24,7 @@ export default function Html({
         }
         {
           cssLinks.map(csslink => (
-            <link href={csslink} rel="stylesheet" />
+            <link key={csslink} href={csslink} rel="stylesheet" />
             ))
         }
         {styles.map(style => (

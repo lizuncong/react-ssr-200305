@@ -11,7 +11,6 @@ class Login extends React.Component{
     return (
         <div>
           <div>登录页</div>
-          <div>欢迎： {userName}</div>
         </div>
     )
   }
