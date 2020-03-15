@@ -100,8 +100,11 @@ const render = (store, routes, matchedRoutes, req) => {
 
   data.scripts = Array.from(scripts);
   data.cssLinks = [
-    // "https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css"
+    "https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css"
   ]
+  // data.cssLinks = [
+  //   '/assets/static/css/antd.min.css'
+  // ]
   // styleTags.forEach(style => {
   //   data.cssLinks.push(style.key)
   // })

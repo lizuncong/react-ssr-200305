@@ -23,7 +23,7 @@ class Home extends React.Component{
       <div className={styles.home}>
         <div className={styles.title}>
           This is home page !!!
-          <div>my name is {userName}</div>
+          <div>这是一个{userName}</div>
           <img
             src={elephant}
             alt=""
@@ -37,7 +37,7 @@ class Home extends React.Component{
         </div>
         <button
           onClick={() => {
-            changeUserName('lizuncong')
+            changeUserName('计数器')
             // confirm({
             //   title: 'Do you want to delete these items?',
             //   content: 'When clicked the OK button, this dialog will be closed after 1 second',

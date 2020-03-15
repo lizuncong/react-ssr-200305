@@ -13,7 +13,7 @@ export default function Html({
   styleTags,
 }) {
   return (
-    <html className="no-js" lang="en">
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />

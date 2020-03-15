@@ -2,7 +2,7 @@ import { CHANGE_USER, CHANGE_LIST } from './actionTypes'
 
 let count = 0
 const defaultState = {
-  userName: 'lizuncong',
+  userName: '计数器',
   list: [],
 }
 
