@@ -1,3 +1,13 @@
+待解决的问题：
+1.使用css提取样式文件并以外链的形式引用，在浏览器network-preview预览，发现css没生效。实际
+上页面是能够正常显示的（禁用浏览器的js后，也能正常显示）。但是引用的antd的样式，在network-preview
+的时候是生效的
+
+运行：
+    1.首先运行npm run build打包编译代码，
+    2.cd dist目录，然后运行node server.js 启动node服务
+    
+    
 React服务端渲染的思路：
     -> 服务器端运行React代码渲染出HTML(这个HTML同时包含script标签加载客户端脚本，这点很重要，
        不然浏览器接收的只是一个静态的HTML，页面上所有的元素都不可交互)
@@ -135,6 +145,4 @@ React服务端渲染路由问题：
         那么浏览器在初始化store的时候，可以从这个全局变量中拿到初始的数据并初始化浏览器端的store
     
     
-3.运行：
-    1.首先运行npm run build-server打包node端代码，
-    然后运行npm run start-server启动node服务。
+
