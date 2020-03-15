@@ -1,5 +1,5 @@
 import React from 'react'
-import withStyles from 'isomorphic-style-loader/withStyles'
+// import withStyles from 'isomorphic-style-loader/withStyles'
 import { Modal } from 'antd'
 import styles from './index.module.less';
 // const { confirm } = Modal;
@@ -52,6 +52,7 @@ class Home extends React.Component{
         >
           click me
         </button>
+        <input type="text" placeholder="请输入" />
         <div>
           {
             list.map(item => (
@@ -64,4 +65,5 @@ class Home extends React.Component{
   }
 }
 
-export default withStyles(styles)(Home)
+// export default withStyles(styles)(Home)
+export default Home

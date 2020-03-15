@@ -24,6 +24,9 @@ export default function Html({
           linkTags
         }
         {
+          styleTags
+        }
+        {
           scripts.map(script => (
             <link key={script} rel="preload" href={script} as="script" />
           ))

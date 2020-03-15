@@ -9,7 +9,7 @@ import path from "path"
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.resolve(__dirname, 'public')))
+app.use(express.static(path.resolve(__dirname, 'web')))
 
 // app.use('/api', proxy('http://47.95.113.63', {
 //   proxyReqPathResolver: function (req) {

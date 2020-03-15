@@ -1,5 +1,7 @@
 const path = require('path')
 const LoadablePlugin = require('@loadable/webpack-plugin')
+const { getStyleLoaders } = require('./utils');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 
@@ -13,7 +15,7 @@ module.exports = (target) => {
     mode: "development",
     devtool: 'source-map',
     output: {
-      path: path.resolve(__dirname, '../dist/public/assets'),
+      path: path.resolve(__dirname, '../dist/web/assets'),
       publicPath: '/assets/',
       filename: '[name].[chunkhash:8].js',
       chunkFilename: '[name].[chunkhash:8].chunk.js',
@@ -89,91 +91,51 @@ module.exports = (target) => {
         {
           test: cssRegex,
           exclude: cssModuleRegex,
-          use: [
-            {
-              loader: 'isomorphic-style-loader', // 同构
-            },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-              }
-            },
-            {
-              loader: 'postcss-loader',
-            },
-          ]
+          use: getStyleLoaders({
+            importLoaders: 1,
+            sourceMap: false,
+          }),
         },
         {
           test: cssModuleRegex,
-          use: [
-            {
-              loader: 'isomorphic-style-loader', // 同构
+          use: getStyleLoaders( {
+            importLoaders: 1,
+            sourceMap: false,
+            modules: {
+              localIdentName: '[path][name]__[local]',
             },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                modules: {
-                  localIdentName: '[path][name]__[local]',
-                },
-              }
-            },
-            {
-              loader: 'postcss-loader',
-            },
-          ]
+          }),
         },
+
         {
           test: lessRegex,
           exclude: lessModuleRegex,
-          use: [
+          use: getStyleLoaders(
             {
-              loader: 'isomorphic-style-loader', // 同构
+              importLoaders: 2,
+              sourceMap: false,
             },
+            'less-loader',
             {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-              }
-            },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'less-loader',
-              options: {
-                modifyVars: {
-                  '@primary-color': '#1890FF',
-                },
-                javascriptEnabled: true,
-              }
-            }
-          ]
+              modifyVars: {
+                '@primary-color': '#1890FF',
+              },
+              javascriptEnabled: true,
+            }),
         },
         {
           test: lessModuleRegex,
-          use: [
+          use: getStyleLoaders(
             {
-              loader: 'isomorphic-style-loader', // 同构
+              importLoaders: 2,
+              sourceMap: false,
+              modules: {
+                localIdentName: '[path][name]__[local]',
+              },
             },
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 2,
-                modules: {
-                  localIdentName: '[path][name]__[local]',
-                },
-              }
-            },
-            {
-              loader: 'postcss-loader',
-            },
-            {
-              loader: 'less-loader'
-            }
-          ]
-        },
+            'less-loader',
+          ),
+        }
       ]
     },
     stats: {
@@ -185,6 +147,12 @@ module.exports = (target) => {
         // writeToDisk: true,
         filename: `loadable-stats-${target}.json`
       }),
+
+      new MiniCssExtractPlugin({
+        filename: isServer ? 'node/static/css/[name].[contenthash:8].css' : 'static/css/[name].[contenthash:8].css',
+        chunkFilename: isServer ? 'node/static/css/[name].[contenthash:8].chunk.css' : 'static/css/[name].[contenthash:8].chunk.css',
+        // ignoreOrder: true,
+      })
     ]
   }
 }

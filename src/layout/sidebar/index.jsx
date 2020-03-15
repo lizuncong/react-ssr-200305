@@ -1,5 +1,5 @@
 import React from 'react'
-import withStyles from 'isomorphic-style-loader/withStyles'
+// import withStyles from 'isomorphic-style-loader/withStyles'
 import NavLeft from './navLeft'
 import Header from './header'
 import styles from './index.module.less'
@@ -19,4 +19,5 @@ class SideBarLayout extends React.Component{
   }
 }
 
-export default withStyles(styles)(SideBarLayout)
+// export default withStyles(styles)(SideBarLayout)
+export default SideBarLayout

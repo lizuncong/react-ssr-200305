@@ -13,12 +13,18 @@ loadableReady(() => {
     return () => removeCss.forEach(dispose => dispose())
   }
   const root = document.getElementById('main')
+  // ReactDom.hydrate(
+  //   <StyleContext.Provider value={{ insertCss }}>
+  //     <Provider store={store} >
+  //       <Router />
+  //     </Provider>
+  //   </StyleContext.Provider>,
+  //   root
+  // )
   ReactDom.hydrate(
-    <StyleContext.Provider value={{ insertCss }}>
-      <Provider store={store} >
-        <Router />
-      </Provider>
-    </StyleContext.Provider>,
+    <Provider store={store} >
+      <Router />
+    </Provider>,
     root
   )
 })
