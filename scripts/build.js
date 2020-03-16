@@ -4,8 +4,8 @@ const mkdirp = require('mkdirp');
 const webpack = require('webpack');
 const fs = require('fs')
 const glob = require('glob')
-const clientConfig = require('../build/webpack.client');
-const serverConfig = require('../build/webpack.server');
+const clientConfig = require('../build/webpack.client.prod');
+const serverConfig = require('../build/webpack.server.prod');
 
 function copyFile (source, target) {
   const rd = fs.createReadStream(source)

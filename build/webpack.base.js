@@ -11,7 +11,7 @@ const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
-module.exports = (target) => {
+module.exports = (target, mode) => {
   const isServer = target === 'server'
   const isClient = target === 'client'
   const targets = target === 'server' ? {
@@ -20,7 +20,7 @@ module.exports = (target) => {
     browsers: pkg.browserslist,
   }
   return {
-    mode: "production",
+    mode,
     devtool: 'source-map', // 生产source-map，开发cheap-module-inline-source-map
     output: {
       publicPath: '/assets/',

@@ -114,6 +114,6 @@ const clientConfig = {
   },
 }
 
-const config = merge(baseConfig('client'), clientConfig);
+const config = merge(baseConfig('client', 'production'), clientConfig);
 module.exports = config
 

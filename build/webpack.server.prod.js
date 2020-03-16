@@ -50,4 +50,4 @@ const serverConfig = {
   },
 }
 
-module.exports = merge(baseConfig('server'), serverConfig)
+module.exports = merge(baseConfig('server', 'production'), serverConfig)

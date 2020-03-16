@@ -1,6 +1,5 @@
 import React from 'react';
 import express from 'express';
-import proxy from 'express-http-proxy'
 import { getServerStore } from '../redux/store'
 import render from './render';
 import { matchRoutes } from 'react-router-config'
