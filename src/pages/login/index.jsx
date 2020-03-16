@@ -3,7 +3,7 @@ import React from 'react'
 class Login extends React.Component{
 
   componentDidMount() {
-
+    console.log('login...componentDidMount')
   }
 
   render(){
@@ -11,7 +11,6 @@ class Login extends React.Component{
     return (
         <div>
           <div>登录页</div>
-          <div>欢迎： {userName}</div>
         </div>
     )
   }
