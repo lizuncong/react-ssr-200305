@@ -11,11 +11,7 @@ const port = 3000;
 
 app.use(express.static(path.resolve(__dirname, 'web')))
 
-// app.use('/api', proxy('http://47.95.113.63', {
-//   proxyReqPathResolver: function (req) {
-//     return '/ssr/api' + req.url;
-//   }
-// }));
+
 app.get('/api', function (req, res) {
   res.send([
     {
@@ -46,7 +42,7 @@ app.get('*', function (req, res) {
     const mRoute = matchedRoutes[matchedRoutes.length - 1] || {}
     const route = mRoute.route || {};
     res.status(route.status || 200);
-    res.set('content-type', 'text/html')
+    res.setHeader('Content-Type', 'text/html')
     res.send(render(store, routes, matchedRoutes, req))
   })
 })

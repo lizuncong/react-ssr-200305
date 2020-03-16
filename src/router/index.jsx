@@ -2,9 +2,7 @@ import React from 'react';
 import {
   BrowserRouter, StaticRouter, Route, Switch, Redirect,
 } from 'react-router-dom';
-// import withStyles from 'isomorphic-style-loader/withStyles'
 import routes from './routes'
-import '../style/common.less'
 
 class IRouter extends React.Component{
   renderRoute(route){
@@ -42,5 +40,4 @@ class IRouter extends React.Component{
   }
 }
 
-// export default withStyles(commonStyles)(IRouter)
 export default IRouter

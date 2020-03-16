@@ -2,7 +2,6 @@ import React from 'react'
 // import withStyles from 'isomorphic-style-loader/withStyles'
 import { Modal } from 'antd'
 import styles from './index.module.less';
-// const { confirm } = Modal;
 import elephant from '../../resource/images/elephant.jpg';
 import bigImg from '../../resource/images/big.png';
 
@@ -17,8 +16,7 @@ class Home extends React.Component{
 
 
   render(){
-    const { userName, list, changeUserName, dispatch } = this.props;
-    // console.log('home...index.jsx', dispatch)
+    const { userName, list, changeUserName } = this.props;
     return (
       <div className={styles.home}>
         <div className={styles.title}>
@@ -38,16 +36,6 @@ class Home extends React.Component{
         <button
           onClick={() => {
             changeUserName('计数器')
-            // confirm({
-            //   title: 'Do you want to delete these items?',
-            //   content: 'When clicked the OK button, this dialog will be closed after 1 second',
-            //   onOk() {
-            //     return new Promise((resolve, reject) => {
-            //       setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-            //     }).catch(() => console.log('Oops errors!'));
-            //   },
-            //   onCancel() {},
-            // });
           }}
         >
           click me
@@ -65,5 +53,4 @@ class Home extends React.Component{
   }
 }
 
-// export default withStyles(styles)(Home)
 export default Home

@@ -1,5 +1,4 @@
 import React from 'react'
-// import withStyles from 'isomorphic-style-loader/withStyles'
 import styles from './index.module.less'
 
 class Header extends React.Component{
@@ -26,5 +25,4 @@ class Header extends React.Component{
   }
 }
 
-// export default withStyles(styles)(Header)
 export default Header

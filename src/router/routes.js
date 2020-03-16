@@ -2,28 +2,15 @@ import React from 'react';
 import loadable from '@loadable/component'
 import { getList } from 'src/pages/home/actions'
 
-const SideBarLayout = loadable(() => import(/* webpackChunkName: 'SideBarLayout' */'../layout/sidebar'))
-const CommonLayout = loadable(() => import(/* webpackChunkName: 'CommonLayout' */'../layout/common'))
-const Detail = loadable(() => import(/* webpackChunkName: 'Detail' */'../pages/detail'))
-const Home = loadable(() => import(/* webpackChunkName: 'Home' */'../pages/home/connect'))
-const Login = loadable(() => import(/* webpackChunkName: 'Login' */'../pages/login/connect'))
-const Role = loadable(() => import(/* webpackChunkName: 'Role' */'../pages/role'))
-const User = loadable(() => import(/* webpackChunkName: 'User' */'../pages/user'))
-const ProduceList = loadable(() => import(/* webpackChunkName: 'ProduceList' */'../pages/produce-list'))
-const ProduceCategory = loadable(() => import(/* webpackChunkName: 'ProduceCategory' */'../pages/produce-category'))
-
-Home.loadData = (store) => {
-  return store.dispatch(getList())
-}
-// import SideBarLayout from '../layout/sidebar'
-// import CommonLayout from '../layout/common'
-// import Detail from '../pages/detail'
-// import Home from '../pages/home/connect'
-// import Login from '../pages/login/connect'
-// import Role from '../pages/role'
-// import User from '../pages/user'
-// import ProduceList from '../pages/produce-list'
-// import ProduceCategory from '../pages/produce-category'
+const SideBarLayout = loadable(() => import(/* webpackChunkName: 'sideBarLayout' */'../layout/sidebar'))
+const CommonLayout = loadable(() => import(/* webpackChunkName: 'commonLayout' */'../layout/common'))
+const Detail = loadable(() => import(/* webpackChunkName: 'detail' */'../pages/detail'))
+const Home = loadable(() => import(/* webpackChunkName: 'home' */'../pages/home/connect'))
+const Login = loadable(() => import(/* webpackChunkName: 'login' */'../pages/login/connect'))
+const Role = loadable(() => import(/* webpackChunkName: 'role' */'../pages/role'))
+const User = loadable(() => import(/* webpackChunkName: 'user' */'../pages/user'))
+const ProduceList = loadable(() => import(/* webpackChunkName: 'produceList' */'../pages/produce-list'))
+const ProduceCategory = loadable(() => import(/* webpackChunkName: 'produceCategory' */'../pages/produce-category'))
 
 const routes = [
   {
@@ -67,7 +54,9 @@ const routes = [
         title: '首页',
         description: '这是我的首页',
         key: 'home',
-        loadData: Home.loadData
+        loadData: (store) => {
+          return store.dispatch(getList())
+        }
       },
       {
         path: '/user',

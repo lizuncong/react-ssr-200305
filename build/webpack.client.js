@@ -1,8 +1,11 @@
 const path = require('path')
 const merge = require('webpack-merge')
-const fs = require('fs');
+// const fs = require('fs');
+const isWsl = require('is-wsl');
 const webpack = require('webpack')
-const WebpackAssetsManifest = require('webpack-assets-manifest');
+const TerserPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+// const WebpackAssetsManifest = require('webpack-assets-manifest');
 const baseConfig = require('./webpack.base');
 
 const lessRegex = /\.less$/;
@@ -13,7 +16,48 @@ const clientConfig = {
   entry: {
     client: path.resolve(__dirname, '../src/client/index.jsx')
   },
+  output: {
+    path: path.resolve(__dirname, '../dist/web/assets'),
+    filename: '[name].[chunkhash:8].js',
+    chunkFilename: '[name].[chunkhash:8].chunk.js',
+  },
   optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2,
+            drop_console: true,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: !isWsl,
+        cache: true,
+        sourceMap: true,
+      }),
+      new OptimizeCSSAssetsPlugin({
+        cssProcessorOptions: {
+          map: {
+            inline: false,
+            annotation: true,
+          },
+        },
+      }),
+    ],
     splitChunks: {
       cacheGroups: {
         commons: {

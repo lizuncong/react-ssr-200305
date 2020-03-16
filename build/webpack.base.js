@@ -1,7 +1,10 @@
 const path = require('path')
-const LoadablePlugin = require('@loadable/webpack-plugin')
-const { getStyleLoaders } = require('./utils');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const LoadablePlugin = require('@loadable/webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin');
+const { getStyleLoaders } = require('./utils');
+const pkg = require('../package.json');
+
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 
@@ -11,19 +14,20 @@ const lessModuleRegex = /\.module\.less$/;
 module.exports = (target) => {
   const isServer = target === 'server'
   const isClient = target === 'client'
+  const targets = target === 'server' ? {
+    node: pkg.engines.node.match(/(\d+\.?)+/)[0],
+  } : {
+    browsers: pkg.browserslist,
+  }
   return {
-    mode: "development",
-    devtool: 'source-map',
+    mode: "production",
+    devtool: 'source-map', // 生产source-map，开发cheap-module-inline-source-map
     output: {
-      path: path.resolve(__dirname, '../dist/web/assets'),
       publicPath: '/assets/',
-      filename: '[name].[chunkhash:8].js',
-      chunkFilename: '[name].[chunkhash:8].chunk.js',
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: info =>
         path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
-
     resolve: {
       extensions: ['.js', '.jsx'],
       modules: ['node_modules', 'src'],
@@ -47,9 +51,9 @@ module.exports = (target) => {
                   [
                     "@babel/preset-env",
                     {
-                      "useBuiltIns": isClient ? "usage" : undefined,
-                      "corejs": isClient ? 3 : false,
-
+                      useBuiltIns: isClient ? "usage" : undefined,
+                      corejs: isClient ? 3 : false,
+                      targets: targets,
                     }
                   ],
                   "@babel/preset-react"
@@ -102,7 +106,7 @@ module.exports = (target) => {
             importLoaders: 1,
             sourceMap: false,
             modules: {
-              localIdentName: '[path][name]__[local]',
+              localIdentName: '[hash:base64]',
             },
           }),
         },
@@ -130,7 +134,7 @@ module.exports = (target) => {
               importLoaders: 2,
               sourceMap: false,
               modules: {
-                localIdentName: '[path][name]__[local]',
+                localIdentName: '[hash:base64]',
               },
             },
             'less-loader',
@@ -144,7 +148,7 @@ module.exports = (target) => {
     },
     plugins: [
       new LoadablePlugin({
-        // writeToDisk: true,
+        writeToDisk: true,
         filename: `loadable-stats-${target}.json`
       }),
 
@@ -152,7 +156,8 @@ module.exports = (target) => {
         filename: isServer ? 'node/static/css/[name].[contenthash:8].css' : 'static/css/[name].[contenthash:8].css',
         chunkFilename: isServer ? 'node/static/css/[name].[contenthash:8].chunk.css' : 'static/css/[name].[contenthash:8].chunk.css',
         // ignoreOrder: true,
-      })
+      }),
+      // new CompressionPlugin()
     ]
   }
 }

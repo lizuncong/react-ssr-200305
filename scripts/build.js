@@ -1,16 +1,38 @@
+const path = require("path")
 const rimraf = require('rimraf')
 const mkdirp = require('mkdirp');
 const webpack = require('webpack');
+const fs = require('fs')
+const glob = require('glob')
 const clientConfig = require('../build/webpack.client');
 const serverConfig = require('../build/webpack.server');
 
+function copyFile (source, target) {
+  const rd = fs.createReadStream(source)
+  const wr = fs.createWriteStream(target)
+  rd.pipe(wr)
+}
 function build() {
   // 清空dist目录
   rimraf.sync('dist/*', {}, (err, result) => {
     console.log(err)
   })
+
   // 创建dist目录
   mkdirp.sync('dist')
+
+  const dirs = glob.sync('**/*.*', {
+    cwd: 'static',
+    nosort: true,
+    dot: true,
+  })
+
+  dirs.forEach(dir => {
+    const from = path.resolve('static', dir);
+    const to = path.resolve('dist/web/assets/static', dir);
+    mkdirp.sync(path.dirname(to))
+    copyFile(from ,to)
+  })
 
   webpack([clientConfig, serverConfig]).run((err, stats) => {
     console.log('webpack build')

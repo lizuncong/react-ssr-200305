@@ -13,8 +13,8 @@ const serverConfig = {
     server: path.resolve(__dirname, '../src/server/index.js')
   },
   externals: [
-    './chunk-manifest.json',
-    './asset-manifest.json',
+    // './chunk-manifest.json',
+    // './asset-manifest.json',
     nodeExternals({
       // whitelist: [/antd\/.*\/style/],
       whitelist: [reStyle, reImage, /antd\/.*\/style/],

@@ -1,5 +1,4 @@
 import React from 'react'
-// import withStyles from 'isomorphic-style-loader/withStyles'
 import styles from './index.module.less'
 import Menu from 'components/menu'
 import menus from '../../../config/menus'
@@ -28,9 +27,6 @@ class NavLeft extends React.Component{
   }
 
   handleClick(menuItem) {
-    // const { switchMenu } = this.props;
-    const menuName = menuItem.item.props.children.props.children;
-    // switchMenu({ menuId: menuItem.url, menuName });
     this.setState({
       currentUrl: menuItem.key,
     });
@@ -41,7 +37,7 @@ class NavLeft extends React.Component{
     return(
       <div className={styles.navLeftContent}>
         <div className={styles.logo}>
-          {/*<img src="/assets/logo-ant.svg" alt="" />*/}
+          <img src="/assets/logo-ant.svg" alt="" />
           <h1>MTAdmin</h1>
         </div>
         <Menu
@@ -54,5 +50,4 @@ class NavLeft extends React.Component{
   }
 }
 
-// export default withStyles(styles)(NavLeft)
 export default NavLeft

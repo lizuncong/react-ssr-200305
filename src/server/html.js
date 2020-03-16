@@ -3,8 +3,6 @@ import React from 'react';
 export default function Html({
   title,
   description,
-  styles,
-  scripts,
   cssLinks,
   children,
   state,
@@ -27,31 +25,16 @@ export default function Html({
           styleTags
         }
         {
-          scripts.map(script => (
-            <link key={script} rel="preload" href={script} as="script" />
-          ))
-        }
-        {
           cssLinks.map(csslink => (
             <link key={csslink} href={csslink} rel="stylesheet" />
             ))
         }
-        {styles.map(style => (
-          <style
-            key={style.id}
-            id={style.id}
-            dangerouslySetInnerHTML={{ __html: style.cssText }}
-          />
-        ))}
       </head>
       <body>
         <div id="main" dangerouslySetInnerHTML={{ __html: children }} />
         <script
           dangerouslySetInnerHTML={{ __html: `window.INITIAL_STATE=${JSON.stringify(state)}` }}
         />
-        {scripts.map(script => (
-          <script key={script} src={script} />
-        ))}
         {scriptTags}
       </body>
     </html>
