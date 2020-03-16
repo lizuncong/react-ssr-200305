@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from 'antd'
+import styles from './index.module.less'
 
 class Login extends React.Component{
 
@@ -7,10 +9,19 @@ class Login extends React.Component{
   }
 
   render(){
-    const { userName } = this.props;
+    const {  changeMoreValue, isLogin } = this.props;
     return (
-        <div>
+        <div className={styles.pageContainer}>
           <div>登录页</div>
+          <div>{ isLogin ? '已登录' : '未登录' }</div>
+          <Button
+              type="primary"
+              onClick={() => {
+                changeMoreValue({ isLogin: !isLogin })
+              }}
+          >
+            登录
+          </Button>
         </div>
     )
   }

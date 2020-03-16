@@ -1,4 +1,4 @@
-import { changeUserAction, changeListAction } from './actionTypes'
+import { changeUserAction, changeListAction, changeMoreValueAction } from './actionTypes'
 
 export const changeUserName = (userName) => {
   return dispatch => {
@@ -13,5 +13,11 @@ export const getList = () => {
           const list = res.data
           dispatch(changeListAction(list))
         })
+  }
+}
+
+export const changeMoreValue = (data) => {
+  return dispatch => {
+    dispatch(changeMoreValueAction(data))
   }
 }

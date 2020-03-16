@@ -9,8 +9,9 @@ html{
   height: 100%;
 }
 #main{
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  background-color: red;
 }
 ul,li{
   list-style: none;
@@ -20,6 +21,11 @@ input{
   width: 200px;
   height: 200px;
   background-color: red;
+}
+.pageContainer{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .container{
   flex: 1;

@@ -1,11 +1,16 @@
 import { connect } from 'react-redux'
+import { changeMoreValue } from './actions'
 import Login from './index.jsx'
 
 const mapStateToProps = (state) => {
-  const { home } = state;
+  const { login } = state;
   return {
-    userName: home.userName
+    isLogin: login.isLogin
   }
 }
 
-export default connect(mapStateToProps)(Login)
+const mapDispatchToProps = dispatch => ({
+  changeMoreValue: data => dispatch(changeMoreValue(data))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

@@ -16,11 +16,21 @@ class Home extends React.Component{
 
 
   render(){
-    const { userName, list, changeUserName } = this.props;
+    const { userName, list, changeUserName, changeMoreValue, count } = this.props;
     return (
       <div className={styles.home}>
         <div className={styles.title}>
           This is home page !!!
+          <div>计数器：{count}</div>
+          <div
+            onClick={() => {
+              changeMoreValue({
+                count: count + 1
+              })
+            }}
+          >
+            Add
+          </div>
           <div>这是一个{userName}</div>
           <img
             src={elephant}
