@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "node scripts/build.js",
+    "start": "node scripts/start.js",
     "start-server": "node ./dist/server.bundle.js",
     "build-server": "webpack --config ./build/webpack.server.js --watch",
     "build-client": "webpack --config ./build/webpack.client.js --watch"
@@ -42,6 +43,7 @@
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
     "react": "^16.13.0",
+    "react-dev-utils": "^10.2.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
     "react-router-config": "^5.1.1",
@@ -54,6 +56,8 @@
     "webpack": "^4.42.0",
     "webpack-assets-manifest": "^3.1.1",
     "webpack-cli": "^3.3.11",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^1.7.2"
   },

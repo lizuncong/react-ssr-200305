@@ -14,6 +14,8 @@ const lessModuleRegex = /\.module\.less$/;
 module.exports = (target, mode) => {
   const isServer = target === 'server'
   const isClient = target === 'client'
+  const isProduction = mode === 'production'
+  const isDevelopment = mode === 'development'
   const targets = target === 'server' ? {
     node: pkg.engines.node.match(/(\d+\.?)+/)[0],
   } : {
@@ -21,7 +23,7 @@ module.exports = (target, mode) => {
   }
   return {
     mode,
-    devtool: 'source-map', // 生产source-map，开发cheap-module-inline-source-map
+    devtool: isProduction ? 'source-map' : 'cheap-module-inline-source-map', // 生产source-map，开发cheap-module-inline-source-map
     output: {
       publicPath: '/assets/',
       // Point sourcemap entries to original disk location (format as URL on Windows)
@@ -106,7 +108,7 @@ module.exports = (target, mode) => {
             importLoaders: 1,
             sourceMap: false,
             modules: {
-              localIdentName: '[hash:base64]',
+              localIdentName: isProduction ? '[hash:base64]' : '[path][name]__[local]',
             },
           }),
         },
@@ -134,17 +136,13 @@ module.exports = (target, mode) => {
               importLoaders: 2,
               sourceMap: false,
               modules: {
-                localIdentName: '[hash:base64]',
+                localIdentName: isProduction ? '[hash:base64]' : '[path][name]__[local]',
               },
             },
             'less-loader',
           ),
         }
       ]
-    },
-    stats: {
-      colors: true,
-      timings: true,
     },
     plugins: [
       new LoadablePlugin({
@@ -158,6 +156,10 @@ module.exports = (target, mode) => {
         // ignoreOrder: true,
       }),
       // new CompressionPlugin()
-    ]
+    ],
+    stats: {
+      colors: true,
+      timings: true,
+    },
   }
 }

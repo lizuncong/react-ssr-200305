@@ -13,7 +13,6 @@ const webStats = path.resolve(
 )
 
 const render = (store, routes, matchedRoutes, req) => {
-
   const mRoute = matchedRoutes[matchedRoutes.length - 1] || {}
   const route = mRoute.route || {};
 
