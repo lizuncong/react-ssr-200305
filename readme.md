@@ -1,3 +1,7 @@
+运行：
+    1.首先运行npm run build打包编译代码，
+    2.cd dist目录，然后运行node server.js 启动node服务
+    
 待解决的问题：
 1.使用css提取样式文件并以外链的形式引用，在浏览器network-preview预览，发现css没生效。实际
 上页面是能够正常显示的（禁用浏览器的js后，也能正常显示）。但是引用的antd的样式，在network-preview
@@ -17,9 +21,7 @@
       />
       这样在浏览器network->preview预览的时候，样式就正常了
 
-运行：
-    1.首先运行npm run build打包编译代码，
-    2.cd dist目录，然后运行node server.js 启动node服务
+
     
     
 React服务端渲染的思路：
