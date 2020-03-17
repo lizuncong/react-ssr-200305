@@ -4,7 +4,6 @@ import styles from './index.module.less';
 
 class Login extends React.Component {
   componentDidMount() {
-    console.log('login...componentDidMount');
   }
 
   render() {
@@ -16,6 +15,7 @@ class Login extends React.Component {
         <Button
           type="primary"
           onClick={() => {
+            console.log('btn...click....')
             changeMoreValue({ isLogin: !isLogin });
           }}
         >

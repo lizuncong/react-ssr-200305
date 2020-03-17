@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { changeMoreValue } from './actions';
-import Login from './index.jsx';
+import Login from './index';
 
 const mapStateToProps = (state) => {
-  const { login } = state;
+  const { user } = state;
   return {
-    isLogin: login.isLogin,
+    isLogin: user.isLogin,
   };
 };
 

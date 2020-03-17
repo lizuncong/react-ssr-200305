@@ -8,6 +8,7 @@ import '../style/common.less';
 
 loadableReady(() => {
   const store = getClientStore();
+  console.log('client...index.jsx..', store.getState())
   const root = document.getElementById('main');
   ReactDom.hydrate(
     <Provider store={store}>

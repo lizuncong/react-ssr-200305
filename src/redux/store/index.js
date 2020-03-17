@@ -12,6 +12,8 @@ export const getServerStore = () => createStore(
 
 export const getClientStore = () => {
   const initiallState = window.INITIAL_STATE;
+  // console.log('redux...store..index.js..rootReducer..', rootReducer)
+  console.log('redux...store...index.js', initiallState)
   return createStore(
     rootReducer,
     initiallState,

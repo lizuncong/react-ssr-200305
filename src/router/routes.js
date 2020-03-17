@@ -1,6 +1,7 @@
 import React from 'react';
 import loadable from '@loadable/component';
 import { getList } from 'src/pages/home/actions';
+import { getUserInfo } from 'src/pages/login/actions';
 
 const SideBarLayout = loadable(() => import(/* webpackChunkName: 'sideBarLayout' */'../layout/sidebar'));
 const CommonLayout = loadable(() => import(/* webpackChunkName: 'commonLayout' */'../layout/common'));
@@ -20,6 +21,7 @@ const routes = [
     // chunks: ['Login'],
     key: 'login',
     description: '这是一个登录页哦',
+    loadData: (store) => store.dispatch(getUserInfo()),
   },
   {
     path: '/common',

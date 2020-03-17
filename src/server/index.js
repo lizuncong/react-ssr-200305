@@ -12,7 +12,7 @@ const port = 3000;
 app.use(express.static(path.resolve(__dirname, 'web')));
 
 
-app.get('/api', (req, res) => {
+app.get('/api/list', (req, res) => {
   res.send([
     {
       id: '1',
@@ -29,6 +29,12 @@ app.get('/api', (req, res) => {
   ]);
 });
 
+app.get('/api/userInfo', (req, res) => {
+  res.send('test');
+});
+app.get('/favicon.ico', (req, res) => {
+  res.send('test');
+});
 app.get('*', (req, res) => {
   const store = getServerStore();
   // // 参考react-router-dom官网server-rendering指南

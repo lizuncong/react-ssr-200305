@@ -5,10 +5,11 @@ const defaultState = {
 };
 
 export default function (state = defaultState, action) {
+  console.log('login...reduce.js', state, action)
   switch (action.type) {
     case CHANGE_MORE_VALUE:
       return { ...state, ...action.payload };
     default:
-      return defaultState;
+      return state;
   }
 }
