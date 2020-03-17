@@ -7,6 +7,7 @@ import bigImg from '../../resource/images/big.png';
 
 class Home extends React.Component {
   componentDidMount() {
+    console.log('homfdfasfedff');
     const { getList, list } = this.props;
     if (!list.length) {
       getList();
