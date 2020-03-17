@@ -15,6 +15,7 @@ const watchOptions = {
 
 const app = express();
 
+
 app.use(errorOverlayMiddleware());
 app.use(express.static(path.resolve(__dirname, '../static')));
 
