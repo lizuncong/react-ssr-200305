@@ -7,7 +7,9 @@ module.exports = {
   extends: [
     'airbnb',
     'plugin:react/recommended', // eslint-plugin-react
+    'plugin:css-modules/recommended',
   ],
+  plugins: ['import', 'css-modules', 'react'],
   globals: {
     __DEV__: true,
   },
@@ -28,7 +30,6 @@ module.exports = {
       },
     },
   },
-  plugins: ['import', 'react'],
   rules: {
     "react/prefer-stateless-function": "off",
     "jsx-a11y/click-events-have-key-events": "off",
