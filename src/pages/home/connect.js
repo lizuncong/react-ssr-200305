@@ -7,15 +7,15 @@ const mapStateToProps = (state) => {
   return {
     userName: home.userName,
     list: home.list,
-    count: home.count
-  }
-}
+    count: home.count,
+  };
+};
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   changeUserName: (userName) => dispatch(changeUserName(userName)),
   getList: () => dispatch(getList()),
-  changeMoreValue: (data) => dispatch(changeMoreValue(data))
-})
+  changeMoreValue: (data) => dispatch(changeMoreValue(data)),
+});
 const ConnectHome = connect(mapStateToProps, mapDispatchToProps)(Home);
 
-export default ConnectHome
+export default ConnectHome;

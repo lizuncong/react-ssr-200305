@@ -1,21 +1,21 @@
-const path = require('path')
-const merge = require('webpack-merge')
+const path = require('path');
+const merge = require('webpack-merge');
 const isWsl = require('is-wsl');
-const webpack = require('webpack')
+const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const baseConfig = require('./webpack.base');
 
 const clientConfig = (mode) => {
-  const isDevelopment = mode === 'development'
-  const isProduction = mode === 'production'
+  const isDevelopment = mode === 'development';
+  const isProduction = mode === 'production';
   return {
     target: 'web',
     entry: {
       client: isDevelopment ? [
         path.resolve(__dirname, './webpackHotDevClient.js'),
         path.resolve(__dirname, '../src/client/index.jsx'),
-      ] : path.resolve(__dirname, '../src/client/index.jsx')
+      ] : path.resolve(__dirname, '../src/client/index.jsx'),
     },
     output: {
       path: path.resolve(__dirname, '../dist/web/assets'),
@@ -80,8 +80,7 @@ const clientConfig = (mode) => {
       net: 'empty',
       tls: 'empty',
     },
-  }
-}
+  };
+};
 
-module.exports = (mode) => merge(baseConfig('client', mode), clientConfig(mode))
-
+module.exports = (mode) => merge(baseConfig('client', mode), clientConfig(mode));

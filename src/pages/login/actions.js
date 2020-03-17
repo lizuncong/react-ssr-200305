@@ -1,8 +1,6 @@
-import { changeMoreValueAction } from './actionCreators'
+import { changeMoreValueAction } from './actionCreators';
 
 
-export const changeMoreValue = (data) => {
-  return dispatch => {
-    dispatch(changeMoreValueAction(data))
-  }
-}
+export const changeMoreValue = (data) => (dispatch) => {
+  dispatch(changeMoreValueAction(data));
+};

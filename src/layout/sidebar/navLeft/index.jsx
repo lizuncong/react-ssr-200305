@@ -1,29 +1,28 @@
-import React from 'react'
-import styles from './index.module.less'
-import Menu from 'components/menu'
-import menus from '../../../config/menus'
+import React from 'react';
+import Menu from 'components/menu';
+import styles from './index.module.less';
+import menus from '../../../config/menus';
 
-class NavLeft extends React.Component{
-  constructor(props){
-    super(props)
+class NavLeft extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       menuData: [],
       currentUrl: '',
-    }
+    };
   }
 
-  componentWillMount(){
+  componentWillMount() {
     this.setState({
-      menuData: menus
-    })
+      menuData: menus,
+    });
   }
 
-  componentDidMount(){
-
+  componentDidMount() {
     const currentUrl = window.location.pathname;
     this.setState({
-      currentUrl
-    })
+      currentUrl,
+    });
   }
 
   handleClick(menuItem) {
@@ -32,9 +31,9 @@ class NavLeft extends React.Component{
     });
   }
 
-  render(){
+  render() {
     const { currentUrl, menuData } = this.state;
-    return(
+    return (
       <div className={styles.navLeftContent}>
         <div className={styles.logo}>
           <img src="/assets/logo-ant.svg" alt="" />
@@ -46,8 +45,8 @@ class NavLeft extends React.Component{
           onClick={(menuItem) => this.handleClick(menuItem)}
         />
       </div>
-    )
+    );
   }
 }
 
-export default NavLeft
+export default NavLeft;

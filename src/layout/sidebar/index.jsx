@@ -1,12 +1,12 @@
-import React from 'react'
-import NavLeft from './navLeft'
-import Header from './header'
-import styles from './index.module.less'
+import React from 'react';
+import NavLeft from './navLeft';
+import Header from './header';
+import styles from './index.module.less';
 
-class SideBarLayout extends React.Component{
-  render(){
+class SideBarLayout extends React.Component {
+  render() {
     const { children } = this.props;
-    return(
+    return (
       <div className={styles.container}>
         <NavLeft />
         <div className={styles.main}>
@@ -14,8 +14,8 @@ class SideBarLayout extends React.Component{
           { children }
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default SideBarLayout
+export default SideBarLayout;

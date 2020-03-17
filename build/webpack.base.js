@@ -1,6 +1,6 @@
-const path = require('path')
+const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const LoadablePlugin = require('@loadable/webpack-plugin')
+const LoadablePlugin = require('@loadable/webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { getStyleLoaders } = require('./utils');
 const pkg = require('../package.json');
@@ -12,23 +12,22 @@ const lessRegex = /\.less$/;
 const lessModuleRegex = /\.module\.less$/;
 
 module.exports = (target, mode) => {
-  const isServer = target === 'server'
-  const isClient = target === 'client'
-  const isProduction = mode === 'production'
-  const isDevelopment = mode === 'development'
+  const isServer = target === 'server';
+  const isClient = target === 'client';
+  const isProduction = mode === 'production';
+  const isDevelopment = mode === 'development';
   const targets = target === 'server' ? {
     node: pkg.engines.node.match(/(\d+\.?)+/)[0],
   } : {
     browsers: pkg.browserslist,
-  }
+  };
   return {
     mode,
     devtool: isProduction ? 'source-map' : 'cheap-module-inline-source-map', // 生产source-map，开发cheap-module-inline-source-map
     output: {
       publicPath: '/assets/',
       // Point sourcemap entries to original disk location (format as URL on Windows)
-      devtoolModuleFilenameTemplate: info =>
-        path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
+      devtoolModuleFilenameTemplate: (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
     resolve: {
       extensions: ['.js', '.jsx'],
@@ -51,27 +50,27 @@ module.exports = (target, mode) => {
               options: {
                 presets: [
                   [
-                    "@babel/preset-env",
+                    '@babel/preset-env',
                     {
-                      useBuiltIns: isClient ? "usage" : undefined,
+                      useBuiltIns: isClient ? 'usage' : undefined,
                       corejs: isClient ? 3 : false,
-                      targets: targets,
-                    }
+                      targets,
+                    },
                   ],
-                  "@babel/preset-react"
+                  '@babel/preset-react',
                 ],
                 plugins: [
-                  "@loadable/babel-plugin",
-                  "@babel/plugin-syntax-dynamic-import",
-                  ["import", {
-                    libraryName: "antd",
+                  '@loadable/babel-plugin',
+                  '@babel/plugin-syntax-dynamic-import',
+                  ['import', {
+                    libraryName: 'antd',
                     // libraryDirectory: "lib", //改成es会有问题
-                    style: true // `style: true` 会加载 less 文件
-                  }]
-                ].filter(Boolean)
-              }
-            }
-          ]
+                    style: true, // `style: true` 会加载 less 文件
+                  }],
+                ].filter(Boolean),
+              },
+            },
+          ],
         },
         {
           test: /\.(png|jpe?g|gif|ico)$/i,
@@ -104,7 +103,7 @@ module.exports = (target, mode) => {
         },
         {
           test: cssModuleRegex,
-          use: getStyleLoaders( {
+          use: getStyleLoaders({
             importLoaders: 1,
             sourceMap: false,
             modules: {
@@ -127,7 +126,8 @@ module.exports = (target, mode) => {
                 '@primary-color': '#1890FF',
               },
               javascriptEnabled: true,
-            }),
+            },
+          ),
         },
         {
           test: lessModuleRegex,
@@ -141,13 +141,13 @@ module.exports = (target, mode) => {
             },
             'less-loader',
           ),
-        }
-      ]
+        },
+      ],
     },
     plugins: [
       new LoadablePlugin({
         writeToDisk: true,
-        filename: `loadable-stats-${target}.json`
+        filename: `loadable-stats-${target}.json`,
       }),
 
       new MiniCssExtractPlugin({
@@ -161,5 +161,5 @@ module.exports = (target, mode) => {
       colors: true,
       timings: true,
     },
-  }
-}
+  };
+};

@@ -1,16 +1,16 @@
 import React from 'react';
-import loadable from '@loadable/component'
-import { getList } from 'src/pages/home/actions'
+import loadable from '@loadable/component';
+import { getList } from 'src/pages/home/actions';
 
-const SideBarLayout = loadable(() => import(/* webpackChunkName: 'sideBarLayout' */'../layout/sidebar'))
-const CommonLayout = loadable(() => import(/* webpackChunkName: 'commonLayout' */'../layout/common'))
-const Detail = loadable(() => import(/* webpackChunkName: 'detail' */'../pages/detail'))
-const Home = loadable(() => import(/* webpackChunkName: 'home' */'../pages/home/connect'))
-const Login = loadable(() => import(/* webpackChunkName: 'login' */'../pages/login/connect'))
-const Role = loadable(() => import(/* webpackChunkName: 'role' */'../pages/role'))
-const User = loadable(() => import(/* webpackChunkName: 'user' */'../pages/user'))
-const ProduceList = loadable(() => import(/* webpackChunkName: 'produceList' */'../pages/produce-list'))
-const ProduceCategory = loadable(() => import(/* webpackChunkName: 'produceCategory' */'../pages/produce-category'))
+const SideBarLayout = loadable(() => import(/* webpackChunkName: 'sideBarLayout' */'../layout/sidebar'));
+const CommonLayout = loadable(() => import(/* webpackChunkName: 'commonLayout' */'../layout/common'));
+const Detail = loadable(() => import(/* webpackChunkName: 'detail' */'../pages/detail'));
+const Home = loadable(() => import(/* webpackChunkName: 'home' */'../pages/home/connect'));
+const Login = loadable(() => import(/* webpackChunkName: 'login' */'../pages/login/connect'));
+const Role = loadable(() => import(/* webpackChunkName: 'role' */'../pages/role'));
+const User = loadable(() => import(/* webpackChunkName: 'user' */'../pages/user'));
+const ProduceList = loadable(() => import(/* webpackChunkName: 'produceList' */'../pages/produce-list'));
+const ProduceCategory = loadable(() => import(/* webpackChunkName: 'produceCategory' */'../pages/produce-category'));
 
 const routes = [
   {
@@ -19,7 +19,7 @@ const routes = [
     title: '登录页',
     // chunks: ['Login'],
     key: 'login',
-    description: '这是一个登录页哦'
+    description: '这是一个登录页哦',
   },
   {
     path: '/common',
@@ -36,7 +36,7 @@ const routes = [
         component: Detail,
         key: 'detail',
         description: '这是一个详情页',
-      }
+      },
     ],
   },
   {
@@ -54,9 +54,7 @@ const routes = [
         title: '首页',
         description: '这是我的首页',
         key: 'home',
-        loadData: (store) => {
-          return store.dispatch(getList())
-        }
+        loadData: (store) => store.dispatch(getList()),
       },
       {
         path: '/user',
@@ -90,10 +88,9 @@ const routes = [
         description: '这是商品分类页面',
         key: 'produceCategory',
       },
-    ]
-  }
-]
+    ],
+  },
+];
 
 
-
-export default routes
+export default routes;

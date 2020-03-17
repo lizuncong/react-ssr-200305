@@ -1,37 +1,44 @@
-import React from 'react'
+import React from 'react';
 // import withStyles from 'isomorphic-style-loader/withStyles'
-import { Modal } from 'antd'
+import { Modal } from 'antd';
 import styles from './index.module.less';
 import elephant from '../../resource/images/elephant.jpg';
 import bigImg from '../../resource/images/big.png';
 
-class Home extends React.Component{
-
+class Home extends React.Component {
   componentDidMount() {
     const { getList, list } = this.props;
-    if(!list.length){
-      getList()
+    if (!list.length) {
+      getList();
     }
   }
 
 
-  render(){
-    const { userName, list, changeUserName, changeMoreValue, count } = this.props;
+  render() {
+    const {
+      userName, list, changeUserName, changeMoreValue, count,
+    } = this.props;
     return (
       <div className={styles.home}>
         <div className={styles.title}>
           This is home page !!!
-          <div>计数器：{count}</div>
+          <div>
+            计数器：
+            {count}
+          </div>
           <div
             onClick={() => {
               changeMoreValue({
-                count: count + 1
-              })
+                count: count + 1,
+              });
             }}
           >
             Add
           </div>
-          <div>这是一个{userName}</div>
+          <div>
+            这是一个
+            {userName}
+          </div>
           <img
             src={elephant}
             alt=""
@@ -45,7 +52,7 @@ class Home extends React.Component{
         </div>
         <button
           onClick={() => {
-            changeUserName('计数器')
+            changeUserName('计数器');
           }}
         >
           click me
@@ -53,14 +60,14 @@ class Home extends React.Component{
         <input type="text" placeholder="请输入" />
         <div>
           {
-            list.map(item => (
-                <div key={item.id}>{item.title}</div>
+            list.map((item) => (
+              <div key={item.id}>{item.title}</div>
             ))
           }
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Home
+export default Home;

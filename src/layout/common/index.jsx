@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-class CommonLayout extends React.Component{
-  render(){
+class CommonLayout extends React.Component {
+  render() {
     const { children } = this.props;
-    return(
+    return (
       <div>
         <div>common layout</div>
         { children }
       </div>
-    )
+    );
   }
 }
 
-export default CommonLayout
+export default CommonLayout;

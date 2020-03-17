@@ -1,6 +1,6 @@
-const path = require('path')
-const merge = require('webpack-merge')
-const webpack = require('webpack')
+const path = require('path');
+const merge = require('webpack-merge');
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const baseConfig = require('./webpack.base');
 
@@ -8,12 +8,12 @@ const reStyle = /\.(css|less|styl|scss|sass|sss)$/;
 const reImage = /\.(bmp|gif|jpg|jpeg|png|svg)$/;
 
 const serverConfig = (mode) => {
-  const isDevelopment = mode === 'development'
-  const isProduction = mode === 'production'
+  const isDevelopment = mode === 'development';
+  const isProduction = mode === 'production';
   return {
     target: 'node', // 使用node.js require加载chunks，并且任何内置的模块(如fs或者path)都不会打包进bundle中
     entry: {
-      server: path.resolve(__dirname, '../src/server/index.js')
+      server: path.resolve(__dirname, '../src/server/index.js'),
     },
     externals: [
       nodeExternals({
@@ -27,10 +27,10 @@ const serverConfig = (mode) => {
       libraryTarget: 'commonjs2',
       ...(isDevelopment
         ? {
-            hotUpdateMainFilename: 'updates/[hash].hot-update.json',
-            hotUpdateChunkFilename: 'updates/[id].[hash].hot-update.js'
-          } : undefined
-      )
+          hotUpdateMainFilename: 'updates/[hash].hot-update.json',
+          hotUpdateChunkFilename: 'updates/[id].[hash].hot-update.js',
+        } : undefined
+      ),
     },
     plugins: [
       new webpack.DefinePlugin({
@@ -51,7 +51,7 @@ const serverConfig = (mode) => {
       __filename: false,
       __dirname: false,
     },
-  }
-}
+  };
+};
 
-module.exports = (mode) => merge(baseConfig('server', mode), serverConfig(mode))
+module.exports = (mode) => merge(baseConfig('server', mode), serverConfig(mode));

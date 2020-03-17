@@ -25,9 +25,9 @@ export default function Html({
           styleTags
         }
         {
-          cssLinks.map(csslink => (
+          cssLinks.map((csslink) => (
             <link key={csslink} href={csslink} rel="stylesheet" />
-            ))
+          ))
         }
       </head>
       <body>

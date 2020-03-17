@@ -1,14 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-class Role extends React.Component{
-
-  render(){
-    return(
+class Role extends React.Component {
+  render() {
+    return (
       <div>
         角色管理
       </div>
-    )
+    );
   }
 }
 
-export default Role
+export default Role;

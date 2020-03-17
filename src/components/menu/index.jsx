@@ -1,12 +1,10 @@
-import React from 'react'
-import { Menu } from 'antd'
+import React from 'react';
+import { Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
 
-const { SubMenu } = Menu
+const { SubMenu } = Menu;
 
-class IMenu extends React.Component{
-
-
+class IMenu extends React.Component {
   // 菜单渲染
   renderMenu(data) {
     return data.map((item) => {
@@ -25,7 +23,7 @@ class IMenu extends React.Component{
     });
   }
 
-  render(){
+  render() {
     const { selectedKeys, menuData, onClick } = this.props;
     return (
       <Menu
@@ -36,8 +34,8 @@ class IMenu extends React.Component{
       >
         { this.renderMenu(menuData) }
       </Menu>
-    )
+    );
   }
 }
 
-export default IMenu
+export default IMenu;

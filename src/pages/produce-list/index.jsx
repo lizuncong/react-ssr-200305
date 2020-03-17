@@ -1,14 +1,13 @@
-import React from 'react'
+import React from 'react';
 
-class ProduceList extends React.Component{
-
-  render(){
-    return(
+class ProduceList extends React.Component {
+  render() {
+    return (
       <div>
         商品列表
       </div>
-    )
+    );
   }
 }
 
-export default ProduceList
+export default ProduceList;
