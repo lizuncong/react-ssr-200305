@@ -49,7 +49,8 @@ app.get('*', (req, res) => {
   const promises = matchedRoutes.map(
     (item) => item.route.loadData && item.route.loadData(store), // 调用loadData填充store
   ).filter(Boolean);
-
+  //
+  console.log(promises)
   Promise.all(promises).then(() => {
     const mRoute = matchedRoutes[matchedRoutes.length - 1] || {};
     const route = mRoute.route || {};
