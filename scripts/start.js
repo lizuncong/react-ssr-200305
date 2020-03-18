@@ -40,12 +40,12 @@ const serverPromise = createCompilation(
   serverCompiler,
   serverConfig,
 );
-
-server.use(webpackDevMiddleware(serverCompiler, {
-  publicPath: serverConfig.output.publicPath,
-  logLevel: 'silent',
-  watchOptions,
-}));
+//
+// server.use(webpackDevMiddleware(serverCompiler, {
+//   publicPath: serverConfig.output.publicPath,
+//   logLevel: 'silent',
+//   watchOptions,
+// }));
 
 // server.use(webpackHotMiddleware(clientCompiler, { log: false }));
 

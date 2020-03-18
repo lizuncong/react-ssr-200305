@@ -8,7 +8,6 @@ const defaultState = {
 };
 
 export default function (state = defaultState, action) {
-  console.log('home...reduce.js', state, action)
   switch (action.type) {
     case CHANGE_USER:
       console.log('home...reduce.js', action);

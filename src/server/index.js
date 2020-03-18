@@ -29,8 +29,14 @@ app.get('/api/list', (req, res) => {
   ]);
 });
 
+let isLogin = false;
+
 app.get('/api/userInfo', (req, res) => {
-  res.send('test');
+  res.send(isLogin);
+});
+app.get('/api/login', (req, res) => {
+  isLogin = !isLogin;
+  res.send(isLogin);
 });
 app.get('/favicon.ico', (req, res) => {
   res.send('test');

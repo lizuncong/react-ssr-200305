@@ -7,7 +7,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { changeMoreValue, isLogin } = this.props;
+    const { changeMoreValue, isLogin, handleLogin } = this.props;
     return (
       <div className={styles.pageContainer}>
         <div>登录页</div>
@@ -15,8 +15,7 @@ class Login extends React.Component {
         <Button
           type="primary"
           onClick={() => {
-            console.log('btn...click....')
-            changeMoreValue({ isLogin: !isLogin });
+            handleLogin();
           }}
         >
           登录
