@@ -12,7 +12,7 @@ const webStats = path.resolve(
   '../dist/web/assets/loadable-stats-client.json',
 );
 
-const render = (store, routes, matchedRoutes, req) => {
+const render = (store, routes, matchedRoutes, req, context) => {
   const mRoute = matchedRoutes[matchedRoutes.length - 1] || {};
   const route = mRoute.route || {};
 
@@ -22,7 +22,6 @@ const render = (store, routes, matchedRoutes, req) => {
     title: route.title || '',
     description: route.description || '',
   };
-  const context = {};
 
   const jsx = webExtractor.collectChunks(
     <Provider store={store}>

@@ -42,21 +42,37 @@ app.get('/favicon.ico', (req, res) => {
   res.send('test');
 });
 app.get('*', (req, res) => {
-  const store = getServerStore();
+  const store = getServerStore(req);
   // // 参考react-router-dom官网server-rendering指南
   // // 根据路由路径，获取数据并填充store
   const matchedRoutes = matchRoutes(routes, req.path);
-  const promises = matchedRoutes.map(
-    (item) => item.route.loadData && item.route.loadData(store), // 调用loadData填充store
-  ).filter(Boolean);
+  const promises = [];
+
+  matchedRoutes.forEach((item) => {
+    if (item.route.loadData) {
+      const promise = new Promise((resolve, reject) => {
+        item.route.loadData(store).then(resolve).catch(resolve);
+      });
+      promises.push(promise);
+    }
+  });
   //
-  console.log(promises)
+  // console.log(promises)
   Promise.all(promises).then(() => {
     const mRoute = matchedRoutes[matchedRoutes.length - 1] || {};
     const route = mRoute.route || {};
-    res.status(route.status || 200);
+    const status = route.status || 200;
+    const context = {};
+    const html = render(store, routes, matchedRoutes, req, context);
+
+    if (context.action === 'REPLACE') { // 需要重定向
+      res.redirect(301, context.url);
+      return;
+    }
+
+    res.status(status);
     res.setHeader('Content-Type', 'text/html');
-    res.send(render(store, routes, matchedRoutes, req));
+    res.send(html);
   });
 });
 

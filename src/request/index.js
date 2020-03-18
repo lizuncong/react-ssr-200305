@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const serverAxios = axios.create({
+const serverAxios = (req) => axios.create({
   baseURL: 'http://localhost:3000',
+  headers: {
+    cookie: req.get('cookie') || '',
+  },
 });
 
 const clientAxios = axios.create({

@@ -5,9 +5,9 @@ import rootReducer from '../reducer';
 import { clientAxios, serverAxios } from '../../request';
 
 
-export const getServerStore = () => createStore(
+export const getServerStore = (req) => createStore(
   rootReducer,
-  applyMiddleware(thunk.withExtraArgument(serverAxios)),
+  applyMiddleware(thunk.withExtraArgument(serverAxios(req))),
 );
 
 export const getClientStore = () => {

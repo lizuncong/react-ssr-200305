@@ -12,6 +12,7 @@ const Role = loadable(() => import(/* webpackChunkName: 'role' */'../pages/role'
 const User = loadable(() => import(/* webpackChunkName: 'user' */'../pages/user'));
 const ProduceList = loadable(() => import(/* webpackChunkName: 'produceList' */'../pages/produce-list'));
 const ProduceCategory = loadable(() => import(/* webpackChunkName: 'produceCategory' */'../pages/produce-category'));
+const NotFound = loadable(() => import(/* webpackChunkName: 'notFound' */'../pages/not-found'));
 
 const routes = [
   {
@@ -38,6 +39,12 @@ const routes = [
         component: Detail,
         key: 'detail',
         description: '这是一个详情页',
+      },
+      {
+        component: NotFound,
+        title: '404',
+        key: 'notFound',
+        status: 404,
       },
     ],
   },
