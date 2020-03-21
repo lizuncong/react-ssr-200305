@@ -1,6 +1,4 @@
 import React from 'react';
-// import withStyles from 'isomorphic-style-loader/withStyles'
-import { Modal } from 'antd';
 import styles from './index.module.less';
 import elephant from '../../resource/images/elephant.jpg';
 import bigImg from '../../resource/images/big.png';
@@ -21,7 +19,7 @@ class Home extends React.Component {
     return (
       <div className={styles.home}>
         <div className={styles.title}>
-          This is home page !!!
+          This is homeaa page !!!
           <div>
             计数器：
             {count}

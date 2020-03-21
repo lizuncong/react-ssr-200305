@@ -1,6 +1,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const LoadablePlugin = require('@loadable/webpack-plugin');
+const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { getStyleLoaders } = require('./utils');
 const pkg = require('../package.json');
@@ -23,6 +24,7 @@ module.exports = (target, mode) => {
   };
   return {
     mode,
+    bail: isProduction,
     devtool: isProduction ? 'source-map' : 'cheap-module-inline-source-map', // 生产source-map，开发cheap-module-inline-source-map
     output: {
       publicPath: '/assets/',
@@ -41,6 +43,19 @@ module.exports = (target, mode) => {
     module: {
       strictExportPresence: true,
       rules: [
+        // {
+        //   test: /\.jsx?$/,
+        //   enforce: 'pre',
+        //   use: [
+        //     {
+        //       options: {
+        //         cache: true,
+        //       },
+        //       loader: 'eslint-loader',
+        //     },
+        //   ],
+        //   include: path.resolve(__dirname, '../src'),
+        // },
         {
           test: /\.jsx?$/,
           include: path.resolve(__dirname, '../src'),
@@ -96,14 +111,14 @@ module.exports = (target, mode) => {
         {
           test: cssRegex,
           exclude: cssModuleRegex,
-          use: getStyleLoaders({
+          use: getStyleLoaders(target, {
             importLoaders: 1,
             sourceMap: false,
           }),
         },
         {
           test: cssModuleRegex,
-          use: getStyleLoaders({
+          use: getStyleLoaders(target, {
             importLoaders: 1,
             sourceMap: false,
             modules: {
@@ -116,6 +131,7 @@ module.exports = (target, mode) => {
           test: lessRegex,
           exclude: lessModuleRegex,
           use: getStyleLoaders(
+            target,
             {
               importLoaders: 2,
               sourceMap: false,
@@ -132,6 +148,7 @@ module.exports = (target, mode) => {
         {
           test: lessModuleRegex,
           use: getStyleLoaders(
+            target,
             {
               importLoaders: 2,
               sourceMap: false,
@@ -155,6 +172,7 @@ module.exports = (target, mode) => {
         chunkFilename: isServer ? 'node/static/css/[name].[contenthash:8].chunk.css' : 'static/css/[name].[contenthash:8].chunk.css',
         // ignoreOrder: true,
       }),
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       // new CompressionPlugin()
     ],
     stats: {
