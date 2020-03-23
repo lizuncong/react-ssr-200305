@@ -38,7 +38,7 @@ hotClient.setOptionsAndConnect({
 });
 
 startReportingRuntimeErrors({
-  filename: '/assets/client.js',
+  filename: 'web/assets/client.js',
 });
 
 if (module.hot) {

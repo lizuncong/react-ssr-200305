@@ -76,5 +76,11 @@ app.get('*', (req, res) => {
   });
 });
 
+if (module.hot) {
+  app.hot = module.hot;
+  module.hot.accept('../router');
+} else {
+  app.listen(port, () => console.log(`listening on ${port}`));
+}
 
-app.listen(port, () => console.log(`listening on ${port}`));
+export default app;

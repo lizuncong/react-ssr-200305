@@ -51,7 +51,7 @@ const render = (store, routes, matchedRoutes, req, context) => {
     // "https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css"
   ];
 
-  console.log('server....render.js');
+  console.log('server....render.js', req.path);
   const html = renderToStaticMarkup(<Html {...data} />);
   return `<!doctype html>${html}`;
 };

@@ -13,7 +13,7 @@ const clientConfig = (mode) => {
     target: 'web',
     entry: {
       client: isDevelopment ? [
-        // path.resolve(__dirname, './webpackHotDevClient.js'),
+        path.resolve(__dirname, './webpackHotDevClient.js'),
         path.resolve(__dirname, '../src/client/index.jsx'),
       ] : path.resolve(__dirname, '../src/client/index.jsx'),
     },
