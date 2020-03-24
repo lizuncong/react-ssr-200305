@@ -6,6 +6,10 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const { getStyleLoaders } = require('./utils');
 const pkg = require('../package.json');
 
+const ROOT_DIR = path.resolve(__dirname, '..');
+const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
+
+
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 
@@ -111,14 +115,14 @@ module.exports = (target, mode) => {
         {
           test: cssRegex,
           exclude: cssModuleRegex,
-          use: getStyleLoaders(target, {
+          use: getStyleLoaders(target, mode, {
             importLoaders: 1,
             sourceMap: false,
           }),
         },
         {
           test: cssModuleRegex,
-          use: getStyleLoaders(target, {
+          use: getStyleLoaders(target, mode, {
             importLoaders: 1,
             sourceMap: false,
             modules: {
@@ -132,6 +136,7 @@ module.exports = (target, mode) => {
           exclude: lessModuleRegex,
           use: getStyleLoaders(
             target,
+            mode,
             {
               importLoaders: 2,
               sourceMap: false,
@@ -149,6 +154,7 @@ module.exports = (target, mode) => {
           test: lessModuleRegex,
           use: getStyleLoaders(
             target,
+            mode,
             {
               importLoaders: 2,
               sourceMap: false,

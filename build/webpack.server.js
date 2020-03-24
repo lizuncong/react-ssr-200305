@@ -25,23 +25,17 @@ const serverConfig = (mode) => {
       filename: '[name].js',
       chunkFilename: 'node/[name].js',
       libraryTarget: 'commonjs2',
-      ...(isDevelopment
-        ? {
-          hotUpdateMainFilename: 'updates/[hash].hot-update.json',
-          hotUpdateChunkFilename: 'updates/[id].[hash].hot-update.js',
-        } : undefined
-      ),
     },
     plugins: [
       new webpack.DefinePlugin({
         'process.env.BROWSER': false,
+        __DEV__: isDevelopment,
       }),
       new webpack.BannerPlugin({
         banner: 'require("source-map-support").install();',
         raw: true,
         entryOnly: false,
       }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
     node: {
       console: false,

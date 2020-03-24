@@ -43,16 +43,17 @@ async function start() {
     serverCompiler,
     serverConfig,
   );
-  console.log('client config output public path...', clientConfig.output.publicPath)
+  console.log('client config output public path...', clientConfig.output.publicPath);
   server.use(
     webpackDevMiddleware(clientCompiler, {
+      serverSideRender: true,
       publicPath: clientConfig.output.publicPath,
       logLevel: 'silent',
       watchOptions,
     }),
   );
 
-  server.use(webpackHotMiddleware(clientCompiler, { log: false }));
+  // server.use(webpackHotMiddleware(clientCompiler, { log: false }));
 
 
   let appPromise;
@@ -115,10 +116,16 @@ async function start() {
 
   serverCompiler.watch(watchOptions, (error, stats) => {
     if (app && !error && !stats.hasErrors()) {
-      checkForUpdate().then(() => {
-        appPromiseIsResolved = true;
-        appPromiseResolve();
-      });
+      console.log('server compiler watch...======================')
+      delete require.cache[require.resolve('../dist/server')];
+      // eslint-disable-next-line global-require, import/no-unresolved
+      app = require('../dist/server').default;
+      appPromiseIsResolved = true;
+      appPromiseResolve();
+      // checkForUpdate().then(() => {
+      //   appPromiseIsResolved = true;
+      //   appPromiseResolve();
+      // });
     }
   });
 

@@ -12,11 +12,7 @@ const clientConfig = (mode) => {
   return {
     target: 'web',
     entry: {
-      client: isDevelopment ? [
-        // path.resolve(__dirname, './webpackHotDevClient.js'),
-        'webpack-hot-middleware/client',
-        path.resolve(__dirname, '../src/client/index.jsx'),
-      ] : path.resolve(__dirname, '../src/client/index.jsx'),
+      client: path.resolve(__dirname, '../src/client/index.jsx'),
     },
     output: {
       path: path.resolve(__dirname, '../dist/web/assets'),
@@ -36,7 +32,7 @@ const clientConfig = (mode) => {
               warnings: false,
               comparisons: false,
               inline: 2,
-              // drop_console: true,
+              drop_console: true,
             },
             mangle: {
               safari10: true,
@@ -74,7 +70,6 @@ const clientConfig = (mode) => {
       new webpack.DefinePlugin({
         'process.env.BROWSER': true,
       }),
-      isDevelopment && new webpack.HotModuleReplacementPlugin(),
     ].filter(Boolean),
     node: {
       fs: 'empty',

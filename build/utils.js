@@ -1,7 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
-exports.getStyleLoaders = (target, cssOptions, preProcessor, preProcessorOptions) => {
+exports.getStyleLoaders = (target, mode, cssOptions, preProcessor, preProcessorOptions) => {
   const isServer = target === 'server';
   const isClient = target === 'client';
   const loaders = [
