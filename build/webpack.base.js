@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { getStyleLoaders } = require('./utils');
 const pkg = require('../package.json');
+const { port } = require('./config');
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const resolvePath = (...args) => path.resolve(ROOT_DIR, ...args);
@@ -31,7 +32,11 @@ module.exports = (target, mode) => {
     bail: isProduction,
     devtool: isProduction ? 'source-map' : 'cheap-module-inline-source-map', // 生产source-map，开发cheap-module-inline-source-map
     output: {
-      publicPath: '/assets/',
+      // 这里如果使用publicPath: '/assets/'，在浏览器network -> preview预览的时候会看不到效果。
+      // 使用publicPath: `http://localhost:${port}/assets/`就可以在浏览器network -> preview预览的时候看到效果
+      // 因此只在开发环境使用`http://localhost:${port}/assets/`。
+      publicPath: isDevelopment ? `http://localhost:${port}/assets/` : '/assets/',
+      // publicPath: `http://localhost:${port}/assets/`,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },

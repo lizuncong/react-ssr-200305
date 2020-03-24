@@ -6,8 +6,9 @@ import { getServerStore } from '../redux/store';
 import render from './render';
 import routes from '../router/routes';
 
+const { port } = require('../../build/config');
+
 const app = express();
-const port = 3000;
 
 app.use(express.static(path.resolve(__dirname, 'web')));
 
