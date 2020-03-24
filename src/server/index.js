@@ -77,7 +77,6 @@ app.get('*', (req, res) => {
 });
 
 if (module.hot) {
-
   app.hot = module.hot;
   module.hot.accept('../router/index.jsx');
 } else {
