@@ -43,6 +43,7 @@ async function start() {
     serverCompiler,
     serverConfig,
   );
+  console.log('client config output public path...', clientConfig.output.publicPath)
   server.use(
     webpackDevMiddleware(clientCompiler, {
       publicPath: clientConfig.output.publicPath,

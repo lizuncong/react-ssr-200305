@@ -19,7 +19,7 @@ class Home extends React.Component {
     return (
       <div className={styles.home}>
         <div className={styles.title}>
-          This is 1111homeaaaaaa page !!!
+          This is home page !!!
           <div>
             计数器：
             {count}

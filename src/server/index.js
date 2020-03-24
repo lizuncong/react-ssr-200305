@@ -77,8 +77,9 @@ app.get('*', (req, res) => {
 });
 
 if (module.hot) {
+
   app.hot = module.hot;
-  module.hot.accept('../router');
+  module.hot.accept('../router/index.jsx');
 } else {
   app.listen(port, () => console.log(`listening on ${port}`));
 }

@@ -17,7 +17,7 @@ loadableReady(() => {
     root,
   );
   if (module.hot) {
-    module.hot.accept('../router', () => {
+    module.hot.accept('../router/index.jsx', () => {
       if (appInstance && appInstance.updater.isMounted(appInstance)) {
         // Force-update the whole tree, including components that refuse to update
         deepForceUpdate(appInstance);

@@ -1,7 +1,11 @@
 生产环境打包构建：
     1.首先运行npm run build打包编译代码，
     2.cd dist目录，然后运行node server.js 启动node服务，即可通过localhost:3000端口访问
-    
+
+
+开发环境启动服务：npm run start。
+    开发环境热更新有点问题还没解决。
+
 待解决的问题：
 1.使用css提取样式文件并以外链的形式引用，在浏览器network-preview预览，发现css没生效。实际
 上页面是能够正常显示的（禁用浏览器的js后，也能正常显示）。但是引用的antd的样式，在network-preview
