@@ -35,8 +35,8 @@ module.exports = (target, mode) => {
       // 这里如果使用publicPath: '/assets/'，在浏览器network -> preview预览的时候会看不到效果。
       // 使用publicPath: `http://localhost:${port}/assets/`就可以在浏览器network -> preview预览的时候看到效果
       // 因此只在开发环境使用`http://localhost:${port}/assets/`。
-      publicPath: isDevelopment ? `http://localhost:${port}/assets/` : '/assets/',
-      // publicPath: `http://localhost:${port}/assets/`,
+      // publicPath: isDevelopment ? `http://localhost:${port}/assets/` : '/assets/',
+      publicPath: `http://localhost:${port}/assets/`,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: (info) => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
     },
