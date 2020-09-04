@@ -59,7 +59,8 @@ app.get('*', (req, res) => {
   });
   //
   // console.log(promises)
-  Promise.all(promises).then(() => {
+  Promise.all(promises).then((test) => {
+    // console.log('test....', test)
     const mRoute = matchedRoutes[matchedRoutes.length - 1] || {};
     const route = mRoute.route || {};
     const status = route.status || 200;

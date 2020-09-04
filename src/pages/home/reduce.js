@@ -10,7 +10,7 @@ const defaultState = {
 export default function (state = defaultState, action) {
   switch (action.type) {
     case CHANGE_USER:
-      console.log('home...reduce.js', action);
+      console.log('home...reduce.js', count);
       count += 1;
       return { ...state, userName: action.payload + count };
     case CHANGE_LIST:

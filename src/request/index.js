@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { port } from '../../build/config';
 
 const serverAxios = (req) => axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: `http://localhost:${port}`,
   headers: {
     cookie: req.get('cookie') || '',
   },
