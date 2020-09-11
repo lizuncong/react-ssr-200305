@@ -1,28 +1,44 @@
 生产环境打包构建：
+
     1.首先运行npm run build打包编译代码，
+    
     2.cd dist目录，然后运行node server.js 启动node服务，即可通过localhost:3000端口访问
 
 
-开发环境启动服务：npm run start。
+开发环境启动服务：npm run start。开发环境启动有问题，放弃治疗了。可以先试用生产环境打包构建方式
+运行项目
+    
     开发环境热更新有点问题还没解决。
 
 待解决的问题：
 1.使用css提取样式文件并以外链的形式引用，在浏览器network-preview预览，发现css没生效。实际
+
 上页面是能够正常显示的（禁用浏览器的js后，也能正常显示）。但是引用的antd的样式，在network-preview
+
 的时候是生效的
+
    2020.03.16：如果以外链的形式引用本地css文件，如：
-    <link 
-        rel="stylesheet"
-        href="/assets/static/css/SideBarLayout.31270e6e.chunk.css"
-     />
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css" rel="stylesheet"/>
+   
+```html
+      <link 
+          rel="stylesheet"
+          href="/assets/static/css/SideBarLayout.31270e6e.chunk.css"
+       />
+       <link href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.0.1/antd.min.css" rel="stylesheet"/>
+```
+
      如果查看浏览器network->preview预览，会发现引入的antd.min.css样式会生效，而本地的SideBarLayout.31270e6e.chunk.css
+     
      预览的时候不生效，页面显示正常。排查了一下发现是由于浏览器的network->preview实现方式的问题。href要以绝对路径的形式引入，比如
+     
      这里可以配置output.publicPath: 'http://localhost:3000/'给打包的css添加前缀
-     <link 
-         rel="stylesheet"
-         href="http://localhost:3000/assets/static/css/SideBarLayout.31270e6e.chunk.css"
-      />
+     
+     ```html
+          <link 
+              rel="stylesheet"
+              href="http://localhost:3000/assets/static/css/SideBarLayout.31270e6e.chunk.css"
+           />
+     ```
       这样在浏览器network->preview预览的时候，样式就正常了
 
 
@@ -96,13 +112,16 @@ React服务端渲染路由问题：
     _insertCss（给dom注入css）以及_getCss(返回一个css字符串)。
     因此服务端CSS渲染的思路(或者说原理)是：
     1.首先在组件的componentWillMount生命周期内：
-        import styles from './index.css'
-        ...
-        componentWillMount () {
-          if(this.props.staticContext){
-            this.props.staticContext.css.push(styles._getCss())
-          }
-        }
+    
+    ```jsx
+            import styles from './index.css'
+            ...
+            componentWillMount () {
+              if(this.props.staticContext){
+                this.props.staticContext.css.push(styles._getCss())
+              }
+            }
+    ```
         通过staticContext获取到组件的样式字符串，staticContext由StaticRouter提供。StaticRouter的context
         属性会在组件渲染期间收集一些信息。
     2.然后在服务端渲染的时候，将context收集到的css插入到html中：
