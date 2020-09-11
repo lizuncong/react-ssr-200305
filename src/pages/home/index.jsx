@@ -18,6 +18,7 @@ class Home extends React.Component {
     } = this.props;
     return (
       <div className={styles.home}>
+        <div style={{ background: 'red', color: 'white' }}>测试内联样式</div>
         <div className={styles.title}>
           This is home page !!!
           <div>
